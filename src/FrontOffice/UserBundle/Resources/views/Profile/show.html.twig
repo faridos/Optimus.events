@@ -152,7 +152,34 @@ Cette évènement est depassé
 <div class="col-md-7">
 <div class="info" style="max-width: 100% !important">
 <div ><a href="{{path('show_event',{'id':part.event.id})}}" class="name">{{part.event.titre}}</a></div>
-<div class="title">Créateur : <span class="address">{{ part.event.createur.nom ~' '~part.event.createur.prenom }}</span></div>
+<div class="title nombrus showoptimus">
+											<div class="userWidget-2 shownamus">
+                                       <a href="#"> <div class="avatar" style="background-color:#fff !important">
+                                            <img src="images/avatar-3.png" alt="avatar" class="tooltipus-image">
+                                        </div></a>
+                                        <div class="info" style="  margin-left: 28%;">
+                                          
+                                            <a href="#"><div class="name">Foulén ben Foulén</div></a>
+											<div class="title" style="margin-left:0">Entraineur</div>
+											<div class="address" style="margin-left:0">Tunis</div>
+                                        </div>
+                                       <div class="ops" style="top:70%">
+                                            <div class="group">
+<a class="btn btn-green btn-round btn-xs" href="#" data-toggle="button">
+<span class="fa icon-user-follow state "></span> <span class="state">Ajouter</span>
+<span class="fa icon-user-follow state-active "></span> <span class="state-active">En attente</span>
+</a>
+
+
+
+<a href="#contactAgent" data-toggle="modal" class="btn btn-green btn-round btn-xs"><span class="fa fa-envelope-o"></span> Envoyer Message</a>
+</div>    </div>
+                                       <div class="commentArrow-show"><span class="fa fa-caret-down"></span></div> <div class="clearfix"></div>
+                                    </div>
+										Créateur :<span class="address detaillus">{{ part.event.createur.nom ~' '~part.event.createur.prenom }}</span>
+									
+										</div>
+
 <div class="title">Lieu : <span class="address">{{part.event.lieu}}</span></div>
 </div>
 </div>
@@ -1841,6 +1868,13 @@ return false;
 }
 });
 })
+</script>
+<script>
+$('.showoptimus').hover(function() {
+  $(this).find('.shownamus').stop(true, true).delay(1).fadeIn(1);
+}, function() {
+  $(this).find('.shownamus').stop(true, true).delay(200).fadeOut(500);
+});
 </script>
 <link rel="stylesheet" href="{{ asset('assets/css/datepicker.css') }}"/>
 <link rel="stylesheet" href="{{ asset('assets/css/fullcalendar.css') }}"/>
