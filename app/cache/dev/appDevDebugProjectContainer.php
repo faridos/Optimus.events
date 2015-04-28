@@ -710,7 +710,7 @@ class appDevDebugProjectContainer extends Container
         $c = new \Symfony\Bridge\Doctrine\ContainerAwareEventManager($this);
         $c->addEventSubscriber(new \FOS\UserBundle\Doctrine\Orm\UserListener($this));
 
-        return $this->services['doctrine.dbal.default_connection'] = $this->get('doctrine.dbal.connection_factory')->createConnection(array('driver' => 'pdo_mysql', 'host' => '127.0.0.1', 'port' => NULL, 'dbname' => 'optimusevents', 'user' => 'root', 'password' => NULL, 'charset' => 'UTF8', 'driverOptions' => array()), $b, $c, array());
+        return $this->services['doctrine.dbal.default_connection'] = $this->get('doctrine.dbal.connection_factory')->createConnection(array('driver' => 'pdo_mysql', 'host' => '127.0.0.1', 'port' => NULL, 'dbname' => 'baseoptimusevent', 'user' => 'root', 'password' => NULL, 'charset' => 'UTF8', 'driverOptions' => array()), $b, $c, array());
     }
 
     /**
@@ -726,13 +726,13 @@ class appDevDebugProjectContainer extends Container
         $a = $this->get('annotation_reader');
 
         $b = new \Doctrine\Common\Cache\ArrayCache();
-        $b->setNamespace('sf2orm_default_0de89b44d8a72cf2e148181855f6a2d1');
+        $b->setNamespace('sf2orm_default_e5b0830af16c291df3e67d004dc5ebb0');
 
         $c = new \Doctrine\Common\Cache\ArrayCache();
-        $c->setNamespace('sf2orm_default_0de89b44d8a72cf2e148181855f6a2d1');
+        $c->setNamespace('sf2orm_default_e5b0830af16c291df3e67d004dc5ebb0');
 
         $d = new \Doctrine\Common\Cache\ArrayCache();
-        $d->setNamespace('sf2orm_default_0de89b44d8a72cf2e148181855f6a2d1');
+        $d->setNamespace('sf2orm_default_e5b0830af16c291df3e67d004dc5ebb0');
 
         $e = new \Doctrine\ORM\Mapping\Driver\SimplifiedXmlDriver(array(($this->targetDirs[3].'\\vendor\\payum\\core\\Payum\\Core\\Bridge\\Doctrine\\Resources\\mapping') => 'Payum\\Core\\Model', ($this->targetDirs[3].'\\vendor\\damianociarla\\rating-bundle\\DCS\\RatingBundle\\Resources\\config\\doctrine') => 'DCS\\RatingBundle\\Entity', ($this->targetDirs[3].'\\vendor\\sly\\relation-bundle\\Sly\\RelationBundle\\Resources\\config\\doctrine') => 'Sly\\RelationBundle\\Entity'));
         $e->setGlobalBasename('mapping');
@@ -3380,7 +3380,7 @@ class appDevDebugProjectContainer extends Container
         $n = new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationSuccessHandler($l, array('always_use_default_target_path' => false, 'default_target_path' => '/', 'login_path' => '/login', 'target_path_parameter' => '_target_path', 'use_referer' => false));
         $n->setProviderKey('main');
 
-        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($k, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => $this->get('fos_user.user_provider.username_email')), 'main', $a, $c), 2 => $m, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($b, $f, $this->get('security.authentication.session_strategy'), $l, 'main', $n, new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($e, $l, array('login_path' => '/login', 'failure_path' => NULL, 'failure_forward' => false, 'failure_path_parameter' => '_failure_path'), $a), array('check_path' => '/login_check', 'use_forward' => false, 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'intention' => 'authenticate', 'post_only' => true), $a, $c, $this->get('form.csrf_provider')), 4 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '553f55158269d', $a), 5 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, $this->get('security.access.decision_manager'), $k, $f)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), $l, 'main', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($e, $l, '/login', false), NULL, NULL, $a));
+        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($k, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => $this->get('fos_user.user_provider.username_email')), 'main', $a, $c), 2 => $m, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($b, $f, $this->get('security.authentication.session_strategy'), $l, 'main', $n, new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($e, $l, array('login_path' => '/login', 'failure_path' => NULL, 'failure_forward' => false, 'failure_path_parameter' => '_failure_path'), $a), array('check_path' => '/login_check', 'use_forward' => false, 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'intention' => 'authenticate', 'post_only' => true), $a, $c, $this->get('form.csrf_provider')), 4 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '553f646bca035', $a), 5 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, $this->get('security.access.decision_manager'), $k, $f)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), $l, 'main', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($e, $l, '/login', false), NULL, NULL, $a));
     }
 
     /**
@@ -5101,7 +5101,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getSecurity_Authentication_ManagerService()
     {
-        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($this->get('fos_user.user_provider.username_email'), $this->get('security.user_checker'), 'main', $this->get('security.encoder_factory'), true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('553f55158269d')), true);
+        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($this->get('fos_user.user_provider.username_email'), $this->get('security.user_checker'), 'main', $this->get('security.encoder_factory'), true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('553f646bca035')), true);
 
         $instance->setEventDispatcher($this->get('event_dispatcher'));
 
@@ -5298,7 +5298,7 @@ class appDevDebugProjectContainer extends Container
             'database_driver' => 'pdo_mysql',
             'database_host' => '127.0.0.1',
             'database_port' => NULL,
-            'database_name' => 'optimusevents',
+            'database_name' => 'baseoptimusevent',
             'database_user' => 'root',
             'database_password' => NULL,
             'mailer_transport' => 'gmail',
@@ -5585,8 +5585,8 @@ class appDevDebugProjectContainer extends Container
             'debug.templating.engine.twig.class' => 'Symfony\\Bundle\\TwigBundle\\Debug\\TimedTwigEngine',
             'twig.options' => array(
                 'paths' => array(
-                    'C:\\wamp\\www\\OptimusEvents\\vendor\\payum\\core\\Payum\\Core/Resources/views' => 'PayumCore',
-                    'C:\\wamp\\www\\OptimusEvents\\vendor\\payum\\core\\Payum\\Core\\Bridge\\Symfony/Resources/views' => 'PayumSymfonyBridge',
+                    'C:\\wamp\\www\\Optimus.events\\vendor\\payum\\core\\Payum\\Core/Resources/views' => 'PayumCore',
+                    'C:\\wamp\\www\\Optimus.events\\vendor\\payum\\core\\Payum\\Core\\Bridge\\Symfony/Resources/views' => 'PayumSymfonyBridge',
                 ),
                 'debug' => true,
                 'strict_variables' => true,
