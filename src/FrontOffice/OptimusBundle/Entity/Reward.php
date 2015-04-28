@@ -86,7 +86,7 @@ use Doctrine\ORM\Mapping as ORM;
  public function setPalm($palm) { 
  $this->palm = $palm; 
  }  
- function setDate(\DateTime $date) {
+ 
      $this->date = $date;
  }
 
