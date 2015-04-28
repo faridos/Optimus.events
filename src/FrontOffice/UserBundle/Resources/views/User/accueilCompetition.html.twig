@@ -266,14 +266,15 @@
 
 
                                     {% for competition in competitions %}
+                                            {% if date(competition.dateFin)> date() %}
                                                 var myLatLng = new google.maps.LatLng({{competition.lat}}, {{competition.lng}});
                                                         var marker_{{ competition.id}} = new google.maps.Marker({
                                                         position: myLatLng,
                                                                 map: map,
-                                                                {% if date(competition.dateDebut)< date() %}
+                                                                {% if date(competition.dateDebut)> date() %}
                                                                 icon: new google.maps.MarkerImage('http://www.optimus-beta.com/ACTIF2.png'),
                                                                 {% else %}
-                                                                icon: new google.maps.MarkerImage('http://www.optimus-beta.com/web/ffff.png'),
+                                                                icon: new google.maps.MarkerImage('http://www.optimus-beta.com/ffff.png'),
                                                                 {% endif %}
                                                                 draggable: false,
                                                                 animation: google.maps.Animation.DROP,
@@ -317,7 +318,7 @@
                                                             $(document).on('click', '.closeInfo', function() {
                                                     infobox.open(null, null);
                                                     });
-                                 
+                                 {% endif %}
                                                        {% endfor %}
                                            
                                                        var input = (document.getElementById('pac-input2'));
