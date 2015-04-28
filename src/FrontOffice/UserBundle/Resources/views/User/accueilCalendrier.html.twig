@@ -422,7 +422,7 @@
                                                                     id: '{{ Competition.id }}',
                                                                     type: 'C',
                                                                     className: 'label-info'
-                                                            },{% else %}
+                                                            },{% elseif  "now"|date("Y-m-d") < Competition.dateFin|date('Y-m-d') %}
                                                             {
                                                             title: "{{ Competition.titre }} (la competition à déjà commencé)",
                                                                     start: new Date({% if Competition.dateDebut %}{{ Competition.dateDebut|date('Y') }}{% endif %}
