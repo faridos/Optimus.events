@@ -3,12 +3,12 @@ parameters:
     database_driver: pdo_mysql
     database_host: 127.0.0.1
     database_port: null
-    database_name: symfony
+    database_name: optimusevents
     database_user: root
     database_password: null
-    mailer_transport: smtp
-    mailer_host: 127.0.0.1
-    mailer_user: null
-    mailer_password: null
-    locale: en
+    mailer_transport: gmail
+    mailer_host: null
+    mailer_user: optimusptf@gmail.com
+    mailer_password: optimus2014
+    locale: fr
     secret: ThisTokenIsNotSoSecretChangeIt

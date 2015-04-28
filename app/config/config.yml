@@ -1,10 +1,12 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: @FrontOfficeUserBundle/Resources/config/services.yml }
+    - { resource: @FrontOfficeOptimusBundle/Resources/config/services.yml }
 
 framework:
     #esi:             ~
-    #translator:      { fallback: %locale% }
+    translator:     { fallback: %locale% }
     secret:          %secret%
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -25,6 +27,8 @@ framework:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
+    globals:
+        fos_csrf_provider: "@form.csrf_provider"
 
 # Assetic Configuration
 assetic:
@@ -49,6 +53,8 @@ doctrine:
         user:     %database_user%
         password: %database_password%
         charset:  UTF8
+        types:
+            phone_number: Misd\PhoneNumberBundle\Doctrine\DBAL\Types\PhoneNumberType
         # if using pdo_sqlite as your database driver, add the path in parameters.yml
         # e.g. database_path: %kernel.root_dir%/data/data.db3
         # path:     %database_path%
@@ -64,3 +70,111 @@ swiftmailer:
     username:  %mailer_user%
     password:  %mailer_password%
     spool:     { type: memory }
+    encryption: ssl
+    
+#FOSUserBundle    
+fos_user:
+    db_driver: orm 
+    firewall_name: main
+    user_class: FrontOffice\UserBundle\Entity\User
+    service:
+        mailer: fos_user.mailer.twig_swift
+    registration:
+        form:
+            type:               frontoffice_user_registration
+            validation_groups:  [Registration, Default]
+        confirmation:
+            from_email: 
+                address:        optimusptf@gmail.com
+                sender_name:    OPTIMUS
+            enabled:   true
+            template:   FrontOfficeUserBundle:Registration:email.txt.twig
+    resetting:
+        form:
+            type:               frontoffice_user_resetting
+           
+
+        token_ttl: 86400
+        email:
+            from_email:
+                address:        optimusptf@gmail.com
+                sender_name:    OPTIMUS
+            template:   FOSUserBundle:Resetting:email.txt.twig
+    change_password:
+        form:
+            type: frontoffice_user_change_password
+            name: frontoffice_user_change_password
+            
+dcs_rating:
+    db_driver: orm
+    base_path_to_redirect: /
+    max_value: 5 
+    model:
+        rating: FrontOffice\RatingBundle\Entity\Rating
+        vote: FrontOffice\RatingBundle\Entity\Vote
+        
+sly_relation:
+    relations:
+        friendship:
+            entity1: FrontOffice\UserBundle\Entity\User
+            entity2: FrontOffice\UserBundle\Entity\User
+            bidirectional: true
+
+nomaya_social:
+    buttons:
+        facebook:
+            url:            null
+            locale:         "fr_FR"
+            send:           false
+            width:          300
+            showFaces:      false
+            layout:         "button_count"
+        twitter:
+            url:            null
+            locale:         "fr"
+            message:        "Je veux partager ça avec vous"
+            text:           "Tweet"
+            via:            "L'Equipe cartedevisitevirtuelle.fr"
+            tag:            "ttot"
+        googleplus:
+            url:            null
+            locale :        "fr"
+            size :          "medium"
+            annotation :    "bubble"
+            width :         300
+        linkedin:            
+            url:            null
+            locale:         "fr_FR"
+            counter:        "right"
+        pinterest:
+            url:            null
+    links: 
+        facebook:           "http://www.facebook.com"
+        googleplus:         "https://plus.google.com"
+    theme:                  'default' # optional
+
+payum:
+    security:
+        token_storage:
+            FrontOffice\PaymentBundle\Entity\PaymentToken: { doctrine: orm }
+
+    storages:
+        FrontOffice\PaymentBundle\Entity\Order: { doctrine: orm }
+    payments:
+        paypal_express_checkout_nvp:
+            paypal_express_checkout_nvp:
+                username:  optomiseventstest-facilitator-1_api1.gmail.com
+                password: NCNDDR238FXFARQ2
+                signature: AFcWxV21C7fd0v3bYYYRCpSSRl31AlrcKpw8nVOoElh4Ekzk9d1Q-SUv
+                sandbox: true
+liip_imagine:
+    resolvers:
+       default:
+          web_path: ~
+
+    filter_sets:
+        cache: ~
+        my_thumb:
+            quality: 100
+            filters:
+                thumbnail: { size: [120, 90], mode: outbound }
