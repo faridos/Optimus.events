@@ -1,0 +1,42 @@
+parameters:
+#    front_office_user.example.class: FrontOffice\UserBundle\Example
+
+services:
+    FrontOffice_user_registration.form.type:
+          class: FrontOffice\UserBundle\Form\Type\RegistrationFormType
+          tags:
+              - { name: form.type, alias: frontoffice_user_registration }
+          arguments: [%fos_user.model.user.class%]
+    FrontOffice_user_change_password.form.type:
+          class: FrontOffice\UserBundle\Form\Type\ChangePasswordFormType
+          arguments: [%fos_user.model.user.class%]
+          tags:
+              - { name: form.type, alias: frontoffice_user_change_password }
+    frontoffice_user_resetting.form.type:
+          class: FrontOffice\UserBundle\Form\Type\ResettingFormType
+          arguments: [%fos_user.model.user.class%]
+          tags:
+              - { name: form.type, alias: frontoffice_user_resetting }
+    fos_user.registration_listener:
+        class: FrontOffice\UserBundle\EventListener\RegistrationListener
+        arguments: []
+        tags:
+            - { name: kernel.event_subscriber }
+   
+    login_listener:
+        class: FrontOffice\UserBundle\EventListener\LoginListener
+        arguments: ['@security.context', '@doctrine']
+        tags:
+            - { name: 'kernel.event_listener', event: 'security.interactive_login' }
+   
+    
+    
+    kernel.listener.onCreateUserNotification:
+        class: FrontOffice\UserBundle\EventListener\RegisterEntraineurListner
+        arguments:
+            em: "@doctrine.orm.entity_manager"
+        tags:
+            - { name: kernel.event_listener, event: front_event.after_entraineur_register, method: onCreateUserNotification }       
+            
+            
+     

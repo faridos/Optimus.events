@@ -1,0 +1,14 @@
+{% spaceless %}
+    <div class="dcs-rating-container">
+        {% for i in maxValue..1 %}
+            {% set style = 'fa fa-star-o' %}
+            {% if i <= rating.rate %}
+                {% set style = 'fa fa-star2' %}
+            {% elseif rating.rate|isHalfStar(i) %}
+                {% set style = 'fa fa-star-half-o' %}
+            {% endif %}
+            {% set params = params|merge({'id' : rating.id, 'value' : i}) %}
+            <a href="{{ url('dcs_rating_add_vote', params) }}" class="{{ style }}"></a>
+        {% endfor %}
+    </div>
+{% endspaceless %}

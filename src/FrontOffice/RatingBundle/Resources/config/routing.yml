@@ -1,0 +1,3 @@
+affiche_rating:
+    resource: "@FrontOfficeRatingBundle/Resources/config/routing.xml"
+    prefix: /

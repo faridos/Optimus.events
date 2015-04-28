@@ -1,0 +1,203 @@
+{% extends "FrontOfficeOptimusBundle::layout.html.twig" %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('template/css/contentimus.css')}}">
+    <link rel="stylesheet" href="{{ asset('template/css/progress.css') }}">
+{% endblock %}
+{% block body %}
+
+    <!-- **************************** ici commence le contenu de la page ******************************************-->
+
+    <div id="wrapper">
+
+        <div id="content" class="max">
+
+            <div class="components">
+
+                <div class="row " >
+
+                    <div class="singleTop whiteBg" style="height:584px">
+                        <div class="progress_bar">
+                            <hr class="all_steps">
+                            <hr class="current_steps">
+                            <div class="step complete" id="step1" data-step="1">Choix du Club</div>
+                            <div class="step complete" id="step2" data-step="2">Choix des Adherents</div>
+                            <div class="step" id="step3" data-step="3">Validation</div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" >
+                            <div class="panel panel-default shadux">
+                                <div class="panel-heading optimus">Mes Clubs</div>
+                                <div class="panel-body">
+                                    <form role="form">
+                                        <ul class="notifyList scrollbar">
+                                            {% for club in clubs %}
+                                                {% if club.isPayant == 1%}
+                                                    {% set i = 0 %}
+                                                    {% for particip in competition.particips %}
+                                                        {% if club == particip.club %}
+                                                            {% set i = 1%}
+                                                            {% endif %}
+                                                        {% endfor %}
+
+                                                    <div class="form-group">
+                                                        <div class="set radio custom-radio" {% if i == 1 %}{% endif%}onclick="step_process(1, 2)">
+                                                            <label>
+                                                                <input type="radio" name="radio" id="set{{club.id}}" {% if i == 1 %} checked {% endif%}><span class="set fa fa-check optrect"></span> {{ club.nom}}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </ul>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        {% for club in clubs %}
+{% set i = 0 %}
+                                                    {% for particip in competition.particips %}
+                                                        {% if club == particip.club %}
+                                                            {% set i = 1%}
+                                                            {% endif %}
+                                                        {% endfor %}
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" {% if i == 0 %} style="display: none" {% endif %} id="page{{club.id}}">
+                                <div class="panel panel-default shadux">
+                                    <div class="panel-heading optimus">Choix des Adherents</div>
+                                    <div class="panel-body">
+
+                                        <ul class="notifyList scrollbar">
+
+                                            {% for member in club.adherents %}
+
+
+                                                {% if  member.member != club.createur %}
+                                                    {% set i = 0 %}
+                                                    {% for particip in competition.particips %}
+                                                       {% for partc in particip.partclubcomp %}
+                                                         {% if partc.participant == member %}
+                                                          {% set i = 1 %}
+                                                         {% endif %}
+                                                       {% endfor %}
+                         
+                                                         {% endfor %}
+
+                                                    <div class="checkbox custom-checkbox"><label><input type="checkbox" value="{{ member.member}}" id="{{member.id}}" name="sport"  {% if i == 1 %}  checked {% endif %}><span class="fa fa-check"></span> {{ member.member.nom~' '~member.member.prenom}}</label></div>
+
+                                                    <br>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </ul>
+                                        {% if club.adherents|length > 1 %}
+                                            <div style="text-align: center">
+                                                <button type="button" onclick="step_process(2, 3)"  class="okus btn btn-round btn-green suivant" id="okus{{club.id}}">Confirmer</button>
+                                            <a class="loader" id="loader{{club.id}}">
+<img src="{{asset('template/images/ajax-loader-comment.gif') }}">
+</a>
+                                            </div>
+                                            
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        {% for club in clubs %}
+
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="display: none" id="final{{club.id}}">
+                                <div class="panel panel-default shadux"  >
+                                    <div class="panel-heading optimus">liste des adhérents qui seront participés</div>
+                                    <div class="panel-body">
+                                        <ul class="notifyList scrollbar">
+                                            <p id="demo{{club.id}}">
+                                            </p>
+                                        </ul>
+                                        <div style="text-align: center">
+                                            <button type="reset" value="" onclick="step_process(3, 2, 'desc')" class="avant btn btn-round btn-green" id="avant{{club.id}}">Précédent</button>
+                                            <a type="button" href="{{path('competition_show',{'id':competition.id})}}" class="btn btn-round btn-green">Terminer</a>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <!-- **************************** Fin contenu de page ******************************************-->
+
+
+{% endblock %}
+{% block javascriptfils %}
+    <script src="{{ asset('template/js/progress.js') }}"></script>
+
+    <script>
+        {% for club in clubs %}
+            $('#set{{club.id}}').click(function () {
+            {% for club in clubs %}
+                {% for member in club.adherents %}
+                    {% if member.member != club.createur %}
+
+
+                            document.getElementById("{{member.id}}").checked = false;{%endif%}
+                        {%endfor%}
+                            {%endfor%}
+                                    if (this.checked) {
+
+                                {% for club in clubs %}
+                                            $('#page{{club.id}}').hide();
+                                            $('#final{{club.id}}').hide();{%endfor%}
+                                            $('#page{{club.id}}').show();
+                                        }
+                                    });
+          $("#okus{{club.id}}").click(function () {
+            $("#okus{{club.id}}").hide();
+          $('#loader{{club.id}}').show();
+                                        var name = new Array;
+                                        var i = 0;
+                                                var idcompetition = {{competition.id}};
+                                                var club = {{ club.id}};{% for member in club.adherents %}
+                                    {% if member.member != club.createur %}
+                                                    if (document.getElementById('{{member.id}}').checked){
+                                            name[i] ={{member.id}} ;
+                                                    i = i + 1;
+                                        }
+                                    {% endif %}
+                                {% endfor %}
+                                    var favorite = [];
+                                            $.each($("input[name='sport']:checked"), function () {
+                                                favorite.push($(this).val());
+                                            });
+                                    $.ajax({
+                                    url: Routing.generate('inviter_adherents'),
+                                            data: {name:name, idcompetition:idcompetition, club:club},
+                                            success: function () {
+     
+                                                $("#final{{club.id}}").show();
+                                                       $("#okus{{club.id}}").show();
+                                                $('#loader{{club.id}}').hide();
+                                                document.getElementById("demo{{club.id}}").innerHTML = "<img src='{{ asset('template/images/check-icon.png') }}' style='width:22px'> " + favorite.join(" <br /><img src='{{ asset('template/images/check-icon.png') }}' style='width:22px'> ");
+
+                                            }
+                                    });
+                                    });
+                                
+                                                
+                                                
+        $("#avant{{club.id}}").click(function(){
+    $("#final{{club.id}}").hide();
+});                                        
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                {% endfor %} 
+                                </script>
+
+
+
+                                {% endblock %}

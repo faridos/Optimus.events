@@ -1,0 +1,79 @@
+{% extends "::base.html.twig" %}
+{% block navigation %}
+    <div class="home-header map">
+        <div class="home-logo osLight logomus"><a href="{{ path('index_optumis') }}" ><img src="{{ asset('template/images/logo.png') }}"></a> </div>
+        <a href="#" class="home-navHandler visible-xs"><span class="fa fa-bars"></span></a>
+        <div class="home-nav active">
+            <ul> 
+                {% block nav %}
+               
+                {% endblock %}
+                
+                <li>
+                    <div class="buttonsWrapper pb20">
+                        <a href="#" class="btn btn-icon btn-round btn-facebook">
+                            <span class="fa fa-facebook"></span>
+                        </a> 
+                        <a href="#" class="btn btn-icon btn-round btn-twitter">
+                            <span class="fa fa-twitter"></span></a>
+                        <a href="#" class="btn btn-icon btn-round btn-google">
+                            <span class="fa fa-google-plus"></span></a> 
+                    </div>
+                </li>
+                {#<li style="margin-top:8px">
+                    <div class="ops" style="top:5px">
+                        <a class="btn btn-icon btn-round btn-o btn-blue btn-xs" href="#"><span>fr</span></a>
+                        <a href="#" class="btn btn-icon btn-round btn-o btn-red btn-xs"><span>en</span></a>
+                    </div>
+                </li>  #}       
+            </ul>
+        </div>
+    </div> 
+{% endblock %}
+{% block body %}
+
+{% endblock %}
+{% block footer %}
+    <div class="home-footer" style="">
+        <div class="home-wrapper">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                    <div class="osLight footer-header">Présentation de notre application "Optimus"</div>
+                    <!--img style="width: 45%;"  src="{{ asset('template/images/bienvenue.png') }}"/-->
+                 
+<iframe  wmode="transparent" width="500" height="280"
+src="http://www.youtube.com/embed/Iy1rumvo9xc">
+</iframe>
+
+                </div>
+                
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <div class="osLight footer-header">Nous Rejoindre</div>
+                    <ul class="footer-nav pb20">
+                        <li class="footer-phone"><span class="fa fa-phone"></span>+33 123 456 789</li>
+                        <li class="footer-address osLight">
+                            <p>Rue numéro 1234</p>
+                            <p>Paris</p>
+                            <p>France</p>
+                        </li>
+                        <li><a href="#" class="btn btn-sm btn-icon btn-round btn-o btn-white"><span class="fa fa-facebook"></span></a> <a href="#" class="btn btn-sm btn-icon btn-round btn-o btn-white"><span class="fa fa-twitter"></span></a> <a href="#" class="btn btn-sm btn-icon btn-round btn-o btn-white"><span class="fa fa-google-plus"></span></a> <a href="#" class="btn btn-sm btn-icon btn-round btn-o btn-white"><span class="fa fa-instagram"></span></a> </li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <div class="osLight footer-header">Abonnez-vous à notre newsletter</div>
+                    <form role="form">
+                        <div class="form-group">
+                            <input style="border-radius:25px" type="email" class="form-control" placeholder="Adresse email">
+                        </div>
+                        <div class="form-group">
+                            <a href="#" style="border-radius:25px" class="btn btn-green btn-block">S'abonner</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+                    <div class="copyright">Optimus  &copy; 2015, by <a href="http://www.abweb.tn/" target="_blank" style="color: #FFFFFF">ABWEB</a> </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+{% endblock %}

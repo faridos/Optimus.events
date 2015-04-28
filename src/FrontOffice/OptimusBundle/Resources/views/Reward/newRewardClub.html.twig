@@ -1,0 +1,43 @@
+<form action="{{ path("add_reward_club", {'id' : club.id }) }}" {{ form_enctype(form) }} method="post" >
+    {{ form_errors(form) }}
+    <div class="modal-content bordusbottomus">
+        <div class="modal-header bordustopus">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title" id="contactLabel">Nouveau Palmares</h4>
+        </div>
+        <div class="modal-body">
+            <div class="contactForm">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 cfItem">
+                        <div class="">
+                          
+                           <select id="member" name="name" data-placeholder="Enter Member..." class="chosen-select "  tabindex="2">
+<span  class="fa fa-angle-down dsArrow"></span>
+<option value=""></option>
+{% for member in club.adherents %}
+    {% if member.confirmed == 1 and member.member != club.createur %}
+<option  value="{{member.id}}">{{ member.member }}</option>
+{% endif %}
+{% endfor %}
+</select>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 cfItem">
+                        {{ form_widget(form.titre) }}
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 cfItem">
+                        {{ form_widget(form.classment) }}
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 cfItem">
+                        {{ form_widget(form.date) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#" data-dismiss="modal" class="btn btn-round btn-o btn-gray">Annuler</a>
+            <button type="submit" class="btn btn-round btn-green">Confirmer</button>
+        </div>
+    </div> 
+    {{ form_widget(form._token) }}
+</form>

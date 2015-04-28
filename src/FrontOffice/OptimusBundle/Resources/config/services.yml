@@ -1,0 +1,60 @@
+parameters:
+
+
+services:
+    
+     front_office_optimus.twig.optimus_extension:
+        class: FrontOffice\OptimusBundle\Twig\Extension\OptimusExtension
+        arguments:
+            em: "@doctrine.orm.entity_manager"
+            container: "@service_container"
+            service: "@security.context"
+        tags:
+            - { name: twig.extension }    
+            
+     kernel.listener.onCreateHistoryEvent:
+        class: FrontOffice\OptimusBundle\EventListener\HistoryListener
+        arguments:
+            em: "@doctrine.orm.entity_manager"
+        tags:
+            - { name: kernel.event_listener, event: front_event.after_event_register, method: onCreateHistoryEvent }
+            - { name: kernel.event_listener, event: front_event.after_event_register, method: onCreateNotificationEvent }
+     
+     kernel.listener.onCreateParticipationEvent:
+        class: FrontOffice\OptimusBundle\EventListener\ParticipationListener
+        arguments:
+            em: "@doctrine.orm.entity_manager"
+        tags:
+            - { name: kernel.event_listener, event: front_event.participation_register, method: onCreateParticipationEvent } 
+            
+     kernel.listener.onCreateParticipationCimpetition:
+        class: FrontOffice\OptimusBundle\EventListener\CompetitionListener
+        arguments:
+            em: "@doctrine.orm.entity_manager"
+        tags:
+            - { name: kernel.event_listener, event: front_event.after_compitition_register, method: onCreateParticipationCimpetition } 
+            
+     
+     kernel.listener.onCreateHistoryClub:
+        class: FrontOffice\OptimusBundle\EventListener\ClubListener
+        arguments:
+            em: "@doctrine.orm.entity_manager"
+        tags:
+            - { name: kernel.event_listener, event: front_event.after_club_register, method: onCreateHistoryClub }  
+            
+     kernel.listener.onCreateNotificationClub:
+        class: FrontOffice\OptimusBundle\EventListener\NotificationClubListener
+        arguments:
+            em: "@doctrine.orm.entity_manager"
+        tags:
+          
+            - { name: kernel.event_listener, event: front_event.notification_club, method: onCreateMemberClub }
+           
+            
+     kernel.listener.onCreateNotificationSeen:
+        class: FrontOffice\OptimusBundle\EventListener\NotificationSeenListner
+        arguments:
+            em: "@doctrine.orm.entity_manager"
+        tags:
+            - { name: kernel.event_listener, event: front_event.notification_seen_user, method: onCreateNotificationSeen }
+                               

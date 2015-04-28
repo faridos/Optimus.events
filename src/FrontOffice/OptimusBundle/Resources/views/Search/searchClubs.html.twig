@@ -1,0 +1,111 @@
+{% extends "FrontOfficeOptimusBundle::layout.html.twig" %}
+{% block body %}
+     <div id="wrapper">
+
+        <div id="content" class="max">
+            <div class="components">
+
+                <form action="{{ path('search_clubs',{'key':res.key}) }}" method="get">
+                    <div class="col-xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading optimus"> <span class="navLabel">Filtre des recherches</span></div>
+                            <div class="panel-body">
+
+                                <div class="form-group col-md-2 col-xs-offset-1">
+                                    <input type="text" class="search-optimus" name="key" value="{{res.key}}" placeholder="Nom">
+                                </div>
+                                <div class="form-group col-md-2">
+
+                                    <input type="text" name="sport" value="{{res.sport}}" class="search-optimus" placeholder="Dicipline" />                                      </div>
+                                <div class="form-group col-md-2">
+
+                                    <input type="text" name="adresse" value="{{res.adresse}}" class="search-optimus"  placeholder="Adresse">
+                                </div>
+
+                                <div class="form-group col-md-2">
+                                    <input list="createurlist" type="text" name="createur" value="{{res.createur}}" class="search-optimus" placeholder="Créateur">
+                                    <datalist id="createurlist">
+                                        <option value="tous">
+                                        <option value="amis">
+                                    </datalist>
+                                </div>
+                                
+                                <div class="form-group col-md-2">
+                                    <button type="submit" value="Submit" class="btn btn-round btn-green search-optimus">Rechercher</button>	</div>
+                            </div>
+                        </div>
+            </div>
+            </form>
+            <h4>Résultat des recherches</h4>
+            <div class="row">
+                <div class="col-md-3">
+
+                    <ol class="breadcrumb">
+                        <ul class="notifyList nav">
+                                <li class=""><a href="{{path('search_user')}}" class="notifyName" role="tab"><span class="notifyIcon fa fa-users"></span> Personnes</a></li>
+                                <li class=""><a href="{{path('search_events')}}" class="notifyName" role="tab"><span class="notifyIcon fa fa-trophy"></span> Evenement</a></li>
+                                <li class="active"><a href="{{path('search_clubs')}}" class="notifyName" role="tab"><span class="notifyIcon fa fa-users"></span> Clubs</a></li>
+                            </ul>
+
+
+                    </ol>
+
+                </div>
+                <div class="col-md-9">
+                    <div class="tabsContainer">
+
+                        <div class="tab-content ">
+                           
+                            <ul class="tab-pane fade active in  scrollbar" id="clubs">
+                                <div class="notificationsWidget">
+                                    <h5><span class="badge">{{ res.nbr_clubs}}</span> Clubs</h5>
+
+                                    {% for club in res.clubs %}
+                                    <div class="notification">
+                                                <div class="row ">
+                                                    <div class="time green">
+                                                        <div class="timeBody hidden-xs">{{club.nom}}</div>
+                                                        <div class="timeArrow hidden-xs"><span class="fa fa-caret-right"></span></div>
+                                                        <div class="indicator"><span class="fa fa-circle-o"></span></div>
+                                                        <div class="notifyArrow"><span class="fa fa-caret-left"></span></div>
+                                                    </div>
+                                                    <a href='{{path('show_club',{id:club.id})}}'>
+                                                        <div class="notifyContent">
+                                                            <div class="notifyBody">
+                                                                {% if club.path == null %}
+                                                                <img class="avatar pull-left" src="{{asset('logoclub.png')}}" alt="avatar">
+                                                                {% else %}
+                                                                    <img class="avatar pull-left" src="{{asset(club.WebPath)}}" alt="avatar">
+                                                                    {% endif %}
+                                                                <div class="col-md-3 pb20" style="margin-top: 10px;"> <div class=" pull-left">
+                                                                        <div class="name"><span class=" navIcon fa fa-newspaper-o"></span> Dicipline: {{club.discpline}}</div>
+                                                                    </div></div>
+                                                                <div class="col-md-4 pb20" style="margin-top: 10px;"><div class=" pull-left">
+                                                                        <div class="name"><span class=" navIcon fa fa-user"></span> Créateur: {{club.createur.nom}} {{club.createur.prenom}}</div>
+                                                                    </div></div>
+                                                                <div class="col-md-3 pb20" style="margin-top: 10px;"><div class=" pull-left">
+                                                                        <div class="name"><span class=" navIcon fa fa-clock-o"></span> Date Création: {{club.dateCreation|date('d/m/Y')}}</div>
+                                                                    </div></div>
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                    {% endfor %}
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+
+{% endblock %}

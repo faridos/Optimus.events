@@ -1,0 +1,175 @@
+{% extends "FrontOfficeOptimusBundle::layoutEvent.html.twig" %}
+{% block content %}
+
+{% for flashMessage in app.session.flashbag.get('AjouterPohoto') %}
+       
+        <div class="alert alert-success">
+            <a class="close" data-dismiss="alert">×</a>
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+{% for flashMessage in app.session.flashbag.get('AjouterEvent') %}
+       
+        <div class="alert alert-success">
+            <a class="close" data-dismiss="alert">×</a>
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+{% for flashMessage in app.session.flashbag.get('EditEvent') %}
+       
+        <div class="alert alert-success">
+            <a class="close" data-dismiss="alert">×</a>
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    
+    <div class="col-lg-12"><div class="row mb20">
+
+
+
+        </div>
+        <div class="col-lg-12">
+            <div class="tabsContainer">
+                <ul class="nav nav-tabs nav-justified" role="tablist">
+                    <li class="active"><a href="#participants" role="tab" data-toggle="tab"><span class="icon-trophy"></span> Participants</a></li>
+                    <li class=""><a href="#photos" role="tab" data-toggle="tab"><span class="icon-doc"></span> Photos</a></li>
+                    <li class=""><a href="#videos" role="tab" data-toggle="tab"><span class="icon-film"></span> Vidéos</a></li>
+                </ul>
+                <div class="tab-content">
+
+                    <ul class="tab-pane fade  active in scrollbar" id="participants" >
+                        <div id="msgparticipe" ></div>
+                        <br/>
+                        <div class="row" id="blockparticip">
+
+                            {% for participant in event.participations %}
+                                <div class="col-md-4" id="particip{{participant.participant.id}}">
+
+                                    <div class="tooltipsContainer agent notifyList">
+                                        <a href="{{ path('show_profil',{'id': participant.participant.id}) }}" class=" btn btn-round agent-avatar"  data-toggle="tooltip" data-tooltip-class="red" data-placement="bottom" title="{{participant.participant.prenom}} {{participant.participant.nom}}">
+                                            
+                                            {% if participant.participant.path == null %}
+                                                {% if participant.participant.sexe == 'H' %}
+                                                <img src="{{ asset('men.jpg') }}" class="inline-block imaguss">
+                                                    {% else %}
+                                                <img src="{{ asset('women.jpg') }}" class="inline-block imaguss">
+                                                        {% endif %}
+                                                        {% else %}
+                                                   <img src="{{ asset(participant.participant.WebPath) }}" alt="">         
+                                                
+                                             {% endif %}
+                                            
+                                            <div class="pulse border-green pulseoptimus"></div>
+                                        </a>
+                                        <div class="info">
+                                            <a href="{{ path('show_profil',{'id': participant.participant.id}) }}"> <div class="name clubumus"><strong>{{participant.participant.prenom}} {{participant.participant.nom}}</strong></div></a>
+                                            <div class="title">{{participant.participant.profil}}</div>
+
+                                        </div><br>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                    </ul>
+                    <ul class="tab-pane fade  scrollbar" id="photos" >
+
+                        <div class="row" >
+                            <div class="buttonsWrapper col-xs-12">
+                                {% if app.user.id == event.createur.id %}
+                                    <a class="btn btn-round btn-default btn-sm rightus" href="#uploadphoto" data-toggle="modal"><span class="fa icon-plus state"></span> <span class="state">Upload</span></a><br>
+                                {% endif %}
+                            </div>
+                             <div class="buttonsWrapper col-xs-12">
+                          
+                            {% for photo in event.images %}
+
+                                <div class="col-sm-4" id="{{ photo.id }}">
+                                    <div  data-linkto="" class="propWidget-1 tooltipsContainer  ">
+                                        <div class="fig " id="main">
+                                            <a href="{{ asset(photo.WebPath) }}" data-lightbox-title="Titre du photo" data-lightbox-gallery="gallery">
+                                                <img src="{{ asset(photo.WebPath) }}" />
+                                            </a>
+                                            {% if event.createur == app.user %}
+                                                <div class="priceCap paddus">
+                                                    <button href="#suppritus{{photo.id}}" data-toggle="modal" data-placement="left" class="btn btn-icon btn-round btn-green btn-md rightus" title="supprimer"><span class="icon-trash"></span></button>
+                                                </div>
+                                            {% endif %}
+                                            <div class="figCap">
+                                                <div class="address">Cliquez pour agrandir l'image</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal fade" id="suppritus{{photo.id}}" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content bordusbottomus">
+                    <div class="modal-header bordustopus">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title" id="contactLabel">Suppression </h4>
+                    </div>
+                    <form class="contactForm">
+                        <div class="modal-body">
+                            <p>Souhaitez vous vraiment supprimer cette photo ?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="reset" data-dismiss="modal" value="Reset" class="btn btn-round btn-o btn-gray">Annuler</button>
+                            <a id="supprimerPhoto{{photo.id}}" href="#" type="submit" value="Submit" class="btn btn-round btn-green">Confirmer</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+                            {% endfor %}
+                             </div>
+                            <div class="modal fade" id="uploadphoto" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    {{ render (controller('FrontOfficeOptimusBundle:Photo:createPhotoEvent',  {'id': event.id })) }}
+                                </div>
+                            </div>
+                        </div>
+                    </ul>
+                    <ul class="tab-pane fade scrollbar" id="videos"  >
+                        <div class="row">
+                            <br>
+                         {#   <div class="col-xs-4" >
+                                <div data-linkto="" class="card albumus" >
+                                    <div class="figure" id="main">
+                                        <a href="images/bg-1.jpg" data-lightbox-title="Titre du photo" data-lightbox-gallery="gallery">
+                                            <img src="images/bg-1.jpg" />
+                                        </a>
+
+                                        <div class="figView"><span class="icon-eye"></span></div>
+
+                                    </div>
+                                    <h2 align="center">Titre de video</h2>
+
+                                    <div align="center" >
+                                        <a href="#" class="btn btn-icon btn-round btn-green btn-xs" title="modifier"><span class="icon-settings"></span></a>
+                                        <a href="#" class="btn btn-icon btn-round btn-green btn-xs" title="supprimer"><span class="icon-trash"></span></a>
+                                    </div>
+                                    <br>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>#}
+                         
+                         
+
+                        </div>
+                         <img src="{{ asset('154.png') }}" style='width: 100%;'>
+                        <div class="clearfix"></div>
+
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}

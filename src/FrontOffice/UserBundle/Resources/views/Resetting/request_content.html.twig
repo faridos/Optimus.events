@@ -1,0 +1,22 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+    <div>
+        {% if invalid_username is defined %}
+            <div class="pam login_error_box uiBoxRed" role="alert" tabindex="0">
+                <div>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}</div>      
+            </div>
+            
+        {% endif %}
+
+        <div class="form-group">
+            <input class="search-optimus emailevus " type="text"  placeholder="{{ 'resetting.request.username'|trans }}" id="username" name="username" required="required">
+        </div>
+    </div>
+    <div align="center">
+        <input type="submit" class="btn btn-round btn-green" value="{{ 'resetting.request.submit'|trans }}" />
+    </div>
+</form>
+
+
+
