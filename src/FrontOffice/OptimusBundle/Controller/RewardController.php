@@ -64,15 +64,18 @@ $request->getSession()->getFlashBag()->add('AjouterPalmarés', "Palmarés  a ét
         $em = $this->getDoctrine()->getManager();
         $user = $this->container->get('security.context')->getToken()->getUser();
         $reward = $em->getRepository('FrontOfficeOptimusBundle:Reward')->find($id);
-
+         $req = $this->get('request');
+          $color = $req->get('textcolor');
         if (!$reward) {
             throw $this->createNotFoundException('Unable to find Reward entity.');
         }
-
+       
         $editForm = $this->createForm(new RewardType(), $reward);
+        
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+             $reward->setCouler($color);
             $em->flush();
 $request->getSession()->getFlashBag()->add('ModifierPalmarés', "Palmarés  a été Modifier.");
             return $this->redirect($this->generateUrl('show_profil', array('id' => $user->getId())));
@@ -114,10 +117,10 @@ $request->getSession()->getFlashBag()->add('ModifierPalmarés', "Palmarés  a é
         $club = $em->getRepository('FrontOfficeOptimusBundle:Club')->find($id);
         $request = $this->get('request');
         $name = $request->get("name");
-      
+          $color = $request->get('textcolor');
         $reward = new Reward();
         $reward->setClub($club);
-     
+       $reward->setCouler($color);
         $form = $this->createForm(new RewardType(), $reward);
         $form->handleRequest($request);
         if ($form->isValid()) {
@@ -151,12 +154,16 @@ $request->getSession()->getFlashBag()->add('AjouterPalmarésClub', "Palmarés  a
         $em = $this->getDoctrine()->getManager();
         $reward = $em->getRepository('FrontOfficeOptimusBundle:Reward')->find($id);
         $club = $reward->getClub();
+         $request = $this->get('request');
+          $color = $request->get('textcolor');
         if (!$reward) {
             throw $this->createNotFoundException('Unable to find Reward entity.');
         }
+        
         $editForm = $this->createForm(new RewardType(), $reward);
         $editForm->handleRequest($request);
         if ($editForm->isValid()) {
+            $reward->setCouler($color);
             $em->flush();
 
           return $this->redirect($this->generateUrl('show_club', array('id' => $club->getId())));

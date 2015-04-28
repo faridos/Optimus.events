@@ -1299,11 +1299,9 @@ Amis
 <!------------------- fin modal Envoie message------------------->
 {% endblock %}
 {% block javascriptfils %}
-<script src="{{asset('datemaske/jquery.maskedinput.min.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
-$(function() {
-$("#frontoffice_optimusbundle_reward_date").mask("99/99/9999");
-});</script>
+    $('#frontoffice_optimusbundle_reward_date').datepicker()
+</script>
 <script>
 {% for club in user.clubs %}
 $("#envoyerinvitfriendClub{{club.id}}").click(function(){

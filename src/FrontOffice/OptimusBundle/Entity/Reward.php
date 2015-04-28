@@ -86,10 +86,11 @@ use Doctrine\ORM\Mapping as ORM;
  public function setPalm($palm) { 
  $this->palm = $palm; 
  }  
- public function setDate(\DateTime $date) { 
- $this->date = $date; 
- } 
- public function setTitre($titre) {
+ function setDate(\DateTime $date) {
+     $this->date = $date;
+ }
+
+  public function setTitre($titre) {
  $this->titre = $titre;   
  }   
  
