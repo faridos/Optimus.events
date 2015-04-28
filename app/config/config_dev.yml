@@ -28,12 +28,4 @@ assetic:
     use_controller: true
 
 #swiftmailer:
-swiftmailer:
-    transport: "%mailer_transport%"
-    host:      "%mailer_host%"
-    spool:     { type: memory }
-    encryption: ssl
-    auth_mode:  login
-    host:       gmail
-    username:   optimusptf@gmail.com
-    password:   optimus2014
+#    delivery_address: me@example.com

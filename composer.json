@@ -18,19 +18,7 @@
         "sensio/distribution-bundle": "2.3.*",
         "sensio/framework-extra-bundle": "2.3.*",
         "sensio/generator-bundle": "2.3.*",
-        "incenteev/composer-parameter-handler": "~2.0",
-        "friendsofsymfony/user-bundle": "~2.0@dev",
-        "misd/phone-number-bundle": "1.1.*@dev",
-        "sly/relation-bundle": "dev-master",
-        "damianociarla/rating-bundle": "~1.2",
-        "friendsofsymfony/jsrouting-bundle": "~1.5",
-        "nomaya/social-bundle": "dev-master",
-        "payum/payum-bundle": "*@stable",
-        "payum/offline": "*@stable",
-        "payum/paypal-express-checkout-nvp": "*@stable",
-        "liip/imagine-bundle": "~1.2"
-       
-        
+        "incenteev/composer-parameter-handler": "~2.0"
     },
     "scripts": {
         "post-install-cmd": [

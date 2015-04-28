@@ -1,0 +1,597 @@
+sv
+[01-04-2015 12:42:44] SamirChandoul: s
+[01-04-2015 12:42:44] SamirChandoul: v
+[01-04-2015 12:42:44] SamirChandoul: sv
+[01-04-2015 12:42:44] SamirChandoul: s
+[03-04-2015 16:43:49] bskhaledbskhaled: <div id="" style="height: 100%" class="mob-min col-md-2"><a href="{{ asset('event.png') }}" data-lightbox-title="photo d'évènement" data-lightbox-gallery="">
+                                                            <img src="{{ asset('event.png') }}" class="inline-block imaguss">
+                                                        </a> </div>
+[04-04-2015 12:08:31] bskhaledbskhaled:   mailer_user: sitewebagence2015@gmail.com
+    mailer_password: agence2015
+[04-04-2015 12:08:49] bskhaledbskhaled: # This file is auto-generated during the composer install
+parameters:
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: agance
+    database_user: root
+    database_password: null
+    mailer_transport: gmail
+    mailer_host: null
+    mailer_user: sitewebagence2015@gmail.com
+    mailer_password: agence2015
+    locale: fr
+    secret: ThisTokenIsNotSoSecretChangeIt
+[09-04-2015 13:13:47] bskhaledbskhaled: ftp.optimus-beta.com
+optimusbqx
+uruMrjeA7vzn
+[13-04-2015 09:57:19] bskhaledbskhaled: https://www.clubshop.com/cgi/appx/AL5660831/tp
+[13-04-2015 10:10:46] ***  ***
+[13-04-2015 10:11:14] bskhaledbskhaled: parameters:
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: baseoptimus
+    database_user: root
+    database_password: null
+    mailer_transport: gmail
+    mailer_host: null
+    mailer_user: optimusptf@gmail.com
+    mailer_password: optimus2014
+    locale: fr
+    secret: ThisTokenIsNotSoSecretChangeIt
+[23-04-2015 09:28:07] SamirChandoul: optimusbqxnewopt.mysql.db
+[23-04-2015 09:28:15] SamirChandoul: optimusbqxnewopt[23. apríl 2015 09:28] SamirChandoul: 
+
+<<< optimusbqxnewopt
+[23-04-2015 09:28:24] SamirChandoul: Wx58OPTI
+[24-04-2015 15:35:50] bskhaledbskhaled: {% elseif memberconfirmed.confirmed == 0 %}
+
+<a class="btn btn-green btn-round "  href="#"  id="AttentrejoindreClub">
+
+<span >En attente</span>                                          
+</a>
+{% elseif memberconfirmed.confirmed == 1 %}
+<a class="btn btn-green btn-round " href="#" id="exit_club" >
+<span class="fa icon-action-redo "></span> <span  class="exitClub" id="{{club.id}}" >Quitter</span>
+</a>
+
+{% elseif memberconfirmed.confirmed == 2 %} 
+<a class="btn btn-green btn-round " href="#" id="activer_member_club" >
+<span class="fa icon-action-redo "></span> <span  class="activerclub" id="{{club.id}}" >Regagner</span>
+</a>
+{% endif %}
+[24-04-2015 21:56:23] SamirChandoul: {% if app.request.attributes.get('_route') == 'client_homepage' %}active open{% endif %}
+[25-04-2015 01:39:33] bskhaledbskhaled: {% extends "FrontOfficeOptimusBundle::layout.html.twig" %}
+{% block body %}
+<div id="wrapper">
+<input style="width: 50%;" type="text" class="form-control" id="pac-input2" placeholder="Entrer ici votre région" autocomplete="on" size="60">
+<div id="content" class="mob-max" >
+
+<div class="col-lg-12"><div class="row mb20">
+
+                </div>
+
+                <div class="row">
+                    <form action="{{ path("club_update",{'id': club.id }) }}" {{ form_enctype(form) }} method="post" >
+                        {{ form_errors(form) }}
+                        <div class="col-xs-12 ">
+                            <div class="panel panel-default">
+                                <div class="panel-heading optimus"> <span class="navLabel">Modifier Club</span></div>
+                                <div class="panel-body">
+                                    <div class="form-group col-xs-6">
+                                        {{ form_widget(form.nom) }}
+                                    </div>
+                                    <div class="form-group col-xs-6">
+                                        {{ form_widget(form.discpline) }}
+                                    </div>
+                                    <div class="form-group col-xs-6">
+                                        <div class="input-group search-optimus">
+                                            {{ form_widget(form.fraisAdhesion) }}
+                                            <div class="input-group-addon round ">€</div>
+                                        </div>
+                                    </div> 
+                                    <div class="form-group col-xs-6">
+                                        {{ form_widget(form.dateCreation) }}
+                                    </div>
+                                    <div class="form-group col-xs-8 col-xs-offset-2">
+                                        {{ form_widget(form.description) }}
+                                    </div> 
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="col-xs-12 ">
+                            <div class="panel panel-default">
+                                <div class="panel-heading optimus">veuiller choisir l'emplacement du club dans la map</div><div class="panel-body">
+                                    <div class="form-group col-xs-12">
+                                        {{ form_widget(form.adresse, { 'id': 'adresse' } ) }}
+                                    </div>
+                                    <div class="form-group col-xs-6">
+                                        {{ form_widget(form.lat, { 'id': 'lat_id' }) }}
+                                    </div>
+                                    <div class="form-group col-xs-6">
+                                        {{ form_widget(form.lng, { 'id': 'lng_id' }) }}
+                                    </div><div class="description">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="text-align: center">
+                            <button type="submit" value="Submit" class="btn btn-round btn-green">Modifier</button>
+                            <a href="{{ path('show_club', {'id': club.id}) }}" class="btn btn-round btn-green">Annuler</a>
+                        </div>
+                        {{ form_widget(form._token) }}
+                    </form>
+                </div>
+
+            </div>
+
+
+</div>
+<div id="map-club-edit" style="height: 100%" class="mob-min"><div class="mapPlaceholder"><span class="fa fa-spin fa-spinner"></span> Loading map...</div> </div>
+</div>
+
+{% endblock %}
+[25-04-2015 01:39:46] bskhaledbskhaled: {% block javascriptfils %}
+
+    <script>
+
+        function initialize() {
+        var mapOptions = {
+          center: { lat: -34.397, lng: 150.644},
+          zoom: 15,
+          mapTypeId: google.maps.MapTypeId.HYBRID
+        };
+        var markerevent;
+        var geocoder;
+        geocoder = new google.maps.Geocoder();
+        
+        
+        var mapAddEv = new google.maps.Map(document.getElementById('map-club-edit'),
+            mapOptions);
+            
+            if (navigator.geolocation) {
+
+navigator.geolocation.getCurrentPosition(function (position) {
+
+var posevent = new google.maps.LatLng(position.coords.latitude,
+position.coords.longitude);
+var newMarker = new google.maps.Marker({
+
+position: posevent,
+map: mapAddEv,
+icon: new google.maps.MarkerImage('http://www.optimus-beta.com/web/template/images/marker-position.png'),
+draggable: false,
+animation: google.maps.Animation.DROP
+
+});
+mapAddEv.setCenter(posevent);
+var latlng2 = new google.maps.LatLng({{club.lat}}, {{club.lng}});
+        placeMarker(latlng2);
+google.maps.event.addListener(mapAddEv, 'click', function(event) {
+
+
+            document.getElementById('lat_id').value = event.latLng.lat();
+            document.getElementById('lng_id').value = event.latLng.lng();
+            //latlng = event.latLng;
+            var latlng = new google.maps.LatLng(event.latLng.lat(), event.latLng.lng());
+            //latlng = event.latLng;
+
+            geocoder.geocode({
+                'latLng': latlng
+            }, function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[0]) {
+                        document.getElementById('adresse').value = results[0].formatted_address;
+                        placeMarker(event.latLng);
+                    } else {
+                        alert('No results found');
+                    }
+                } else {
+                    alert('Geocoder failed due to: ' + status);
+                }
+
+            });
+
+        });
+        function placeMarker(location) {
+
+            if (markerevent === undefined) {
+                markerevent = new google.maps.Marker({
+                    position: location,
+                    map: mapAddEv,
+                    draggable: true,
+                    animation: google.maps.Animation.DROP,
+                });
+                markerevent.setIcon('http://www.optimus-beta.com/web/template/images/marker-green.png');
+            }
+            else {
+                markerevent.setPosition(location);
+            }
+        }
+        
+}, function () {
+handleNoGeolocation(true);
+});
+} else {
+handleNoGeolocation(false);
+}
+
+var input = (document.getElementById('pac-input2'));
+                                                       mapAddEv.controls[google.maps.ControlPosition.TOP_CENTER].push(input);
+                                                        var searchBox = new google.maps.places.SearchBox((input));
+                                                        google.maps.event.addListener(searchBox, 'places_changed', function () {
+                                                        var places = searchBox.getPlaces();
+                                                                if (places.length == 0) {
+                                                        return;
+                                                        }
+
+                                                        markers = [];
+                                                                var bounds = new google.maps.LatLngBounds();
+                                                                for (var i = 0, place; place = places[i]; i++) {
+                                                        var image = {
+                                                        url: place.icon,
+                                                                size: new google.maps.Size(71, 71),
+                                                                origin: new google.maps.Point(0, 0),
+                                                                anchor: new google.maps.Point(17, 34),
+                                                                scaledSize: new google.maps.Size(25, 25)
+                                                        };
+                                                                bounds.extend(place.geometry.location);
+                                                        }
+
+                                                        mapAddEv.fitBounds(bounds);
+                                                                mapAddEv.setZoom(15);
+                                                        });
+                                                        google.maps.event.addListener(mapAddEv, 'bounds_changed', function () {
+                                                        var bounds = mapAddEv.getBounds();
+                                                                searchBox.setBounds(bounds);
+                                                        });
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+
+
+
+    </script>
+{% endblock %}
+[25-04-2015 01:40:54] bskhaledbskhaled: <?php
+
+namespace FrontOffice\OptimusBundle\Form;
+
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
+class UpdateClubType extends AbstractType
+{
+        /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
+            ->add('nom','text',array('attr'=>array('class'=>'search-optimus','placeholder'=>'Entrer le nom du club')))
+            ->add('dateCreation','datetime', array('attr'=>array('class'=>'some_class search-optimus','placeholder'=>'Date de creation'),'widget' => 'single_text','required' => true)
+ 
+ )
+            ->add('discpline','text',array('attr'=>array('class'=>'search-optimus','placeholder'=>'Entrer la discpline')))
+            ->add('description','textarea',array('attr'=>array('class'=>'form-control search-optimus','placeholder'=>'Entrer la description du votre club...')))
+            ->add('adresse','text',array('attr'=>array('class'=>'search-optimus','placeholder'=>'Adresse'),'required'=>True))
+           
+            ->add('fraisAdhesion','integer',array('attr'=>array('class'=>'form-control round sansBorder','placeholder'=>'Entrer les frais du club')))
+            ->add('lat','hidden',array('attr'=>array('class'=>'search-optimus', )),array('required'=>true))
+            ->add('lng','hidden',array('attr'=>array('class'=>'search-optimus',)),array('required'=>true))
+            
+        ;
+    }
+    
+    /**
+     * @param OptionsResolverInterface $resolver
+     */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => 'FrontOffice\OptimusBundle\Entity\Club'
+           
+        ));
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return 'frontoffice_optimusbundle_club';
+    }
+}
+[27-04-2015 11:23:39] bskhaledbskhaled: # This file is auto-generated during the composer install
+parameters:
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: baseoptimus
+    database_user: root
+    database_password: null
+    mailer_transport: gmail
+    mailer_host: null
+    mailer_user: optimusptf@gmail.com
+    mailer_password: optimus2014
+    locale: fr
+    secret: ThisTokenIsNotSoSecretChangeIt
+[27-04-2015 18:40:26] bskhaledbskhaled: {% extends "FrontOfficeOptimusBundle::layout.html.twig" %}
+{% block body %}
+<div id="wrapper">
+<input style="width: 50%;" type="text" class="form-control" id="pac-input2" placeholder="Entrer ici votre région" autocomplete="on" size="60">
+<div id="content" class="mob-max" >
+
+<div class="col-lg-12"><div class="row mb20">
+
+                </div>
+
+                <div class="row">
+                    <form action="{{ path('update-event', { 'id' : event.id}) }}" method="post">
+                        {{ form_errors(edit_form) }}
+                        <div class="col-xs-12 ">
+                            <div class="panel panel-default">
+                                <div class="panel-heading optimus"> <span class="navLabel">Ajouter un évenement</span></div>
+                                <div class="panel-body">
+
+                                    <div class="form-group col-xs-6">
+                                    {{ form_widget(edit_form.titre) }}
+                                    </div>
+                                    <div class="form-group col-xs-6">
+                                        {{ form_widget(edit_form.type) }}
+                                     </div>
+                                    <div class="form-group col-xs-6">
+                                        {{ form_widget(edit_form.nbrPlaces) }}                                      
+                                    </div>
+
+
+                                    <div class="form-group col-xs-6">
+
+                                        <div class="input-group search-optimus">
+                                            {{ form_widget(edit_form.frais) }}
+                                            <div class="input-group-addon round ">&euro;</div>
+                                        </div>
+                                    </div> 
+                                    <div class="form-group col-xs-6">
+
+                                        {{ form_widget(edit_form.dateDebut, { 'id': 'some_class_1' }) }}
+                                       
+                                    </div>
+                                    <div class="form-group col-xs-6">
+
+                                        {{ form_widget(edit_form.dateFin, { 'id': 'some_class_2' }) }}
+                                                                            
+                                    </div>
+                                        <div class="form-group col-xs-8 col-xs-offset-2" >
+
+                                     {{ form_widget(edit_form.description, { 'attr': {'style': 'height: 120px'} }) }}
+                                                                            
+                                    </div>
+                                        
+
+                                </div>
+                            </div>
+
+                        </div> 
+
+
+                        <div class="col-xs-12 ">
+                            <div class="panel panel-default">
+                                <div class="panel-heading optimus">veuiller choisir l'emplacement d'évenement dans la map</div><div class="panel-body">
+                                    <div class="form-group col-xs-12">
+                                        {{ form_widget(edit_form.lieu , { 'id': 'lieu' }) }}
+                                        
+                                    </div>
+
+
+                                    <div class="form-group col-xs-6 " style="display: none; visibility: hidden;">
+                                        {{ form_widget(edit_form.lat, { 'id': 'lat_id' }) }}
+                                       
+                                    </div>
+                                    <div class="form-group col-xs-6 " style="display: none; visibility: hidden;">
+
+                                        {{ form_widget(edit_form.lng, { 'id': 'lng_id' }) }}
+                                    </div>
+                                   
+
+                                    
+                                </div></div>
+                        </div>
+                                    <div style="text-align: center">
+
+                                        <button type="submit" value="Submit" class="btn btn-round btn-green">Modifier</button>
+                                        <button type="{{path('show_event',{id: event.id})}}" class="btn btn-round btn-green">Annuler</button>
+                                    </div>
+
+    {{ form_widget(edit_form._token) }}
+    {{ form_rest(edit_form) }}
+                    </form>
+                </div>
+
+            </div>
+
+
+</div>
+<div id="map-event-add" style="height: 100%" class="mob-min"><div class="mapPlaceholder"><span class="fa fa-spin fa-spinner"></span> Loading map...</div> </div>
+</div>
+
+{% endblock %}
+[27-04-2015 18:40:50] bskhaledbskhaled: {% block javascriptfils %}
+    <script>
+        $("#some_class_2").change(function() {
+            var start = $('#some_class_1').val();
+            var end = $('#some_class_2').val();
+            if (start != '' && end != '') {
+                var tabstart = (new Date(start).getTime() / 1000);
+                var tabend = (new Date(end).getTime() / 1000);
+                if (tabstart > tabend) {
+                    $('#notdate').show();
+                    $('#some_class_2').val("");
+                }
+                else{
+                $('#notdate').hide();
+            }
+            }
+            
+        });
+    </script>
+    <script>
+
+        function initialize() {
+        var mapOptions = {
+          center: { lat: -34.397, lng: 150.644},
+          zoom: 15,
+          mapTypeId: google.maps.MapTypeId.HYBRID
+        };
+        var markerevent;
+        var geocoder;
+        geocoder = new google.maps.Geocoder();
+        
+        
+        var mapAddEv = new google.maps.Map(document.getElementById('map-event-add'),
+            mapOptions);
+            
+            if (navigator.geolocation) {
+
+navigator.geolocation.getCurrentPosition(function (position) {
+
+var posevent = new google.maps.LatLng(position.coords.latitude,
+position.coords.longitude);
+var newMarker = new google.maps.Marker({
+
+position: posevent,
+map: mapAddEv,
+icon: new google.maps.MarkerImage('http://www.optimus-beta.com/web/template/images/marker-position.png'),
+draggable: false,
+animation: google.maps.Animation.DROP
+
+});
+mapAddEv.setCenter(posevent);
+var latlng2 = new google.maps.LatLng({{event.lat}}, {{event.lng}});
+        placeMarker(latlng2);
+google.maps.event.addListener(mapAddEv, 'click', function(event) {
+
+
+            document.getElementById('lat_id').value = event.latLng.lat();
+            document.getElementById('lng_id').value = event.latLng.lng();
+            //latlng = event.latLng;
+            var latlng = new google.maps.LatLng(event.latLng.lat(), event.latLng.lng());
+            //latlng = event.latLng;
+
+            geocoder.geocode({
+                'latLng': latlng
+            }, function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[0]) {
+                        document.getElementById('lieu').value = results[0].formatted_address;
+                        placeMarker(event.latLng);
+                    } else {
+                        alert('No results found');
+                    }
+                } else {
+                    alert('Geocoder failed due to: ' + status);
+                }
+
+            });
+
+        });
+        function placeMarker(location) {
+
+            if (markerevent === undefined) {
+                markerevent = new google.maps.Marker({
+                    position: location,
+                    map: mapAddEv,
+                    draggable: true,
+                    animation: google.maps.Animation.DROP,
+                });
+                markerevent.setIcon('http://www.optimus-beta.com/web/template/images/marker-green.png');
+            }
+            else {
+                markerevent.setPosition(location);
+            }
+        }
+        
+}, function () {
+handleNoGeolocation(true);
+});
+} else {
+handleNoGeolocation(false);
+}
+
+var input = (document.getElementById('pac-input2'));
+                                                       mapAddEv.controls[google.maps.ControlPosition.TOP_CENTER].push(input);
+                                                        var searchBox = new google.maps.places.SearchBox((input));
+                                                        google.maps.event.addListener(searchBox, 'places_changed', function () {
+                                                        var places = searchBox.getPlaces();
+                                                                if (places.length == 0) {
+                                                        return;
+                                                        }
+
+                                                        markers = [];
+                                                                var bounds = new google.maps.LatLngBounds();
+                                                                for (var i = 0, place; place = places[i]; i++) {
+                                                        var image = {
+                                                        url: place.icon,
+                                                                size: new google.maps.Size(71, 71),
+                                                                origin: new google.maps.Point(0, 0),
+                                                                anchor: new google.maps.Point(17, 34),
+                                                                scaledSize: new google.maps.Size(25, 25)
+                                                        };
+                                                                bounds.extend(place.geometry.location);
+                                                        }
+
+                                                        mapAddEv.fitBounds(bounds);
+                                                                mapAddEv.setZoom(15);
+                                                        });
+                                                        google.maps.event.addListener(mapAddEv, 'bounds_changed', function () {
+                                                        var bounds = mapAddEv.getBounds();
+                                                                searchBox.setBounds(bounds);
+                                                        });
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+
+
+
+    </script>
+{% endblock %}
+[12:17:37] bskhaledbskhaled: # Cache and logs (Symfony2)
+/app/cache/*
+/app/logs/*
+!app/cache/.gitkeep
+!app/logs/.gitkeep
+
+# Cache and logs (Symfony3)
+/var/cache/*
+/var/logs/*
+!var/cache/.gitkeep
+!var/logs/.gitkeep
+
+# Parameters
+/app/config/parameters.yml
+/app/config/parameters.ini
+
+# Managed by Composer
+/app/bootstrap.php.cache
+/var/bootstrap.php.cache
+/bin/*
+!bin/console
+!bin/symfony_requirements
+/vendor/
+
+# Assets and user uploads
+/web/bundles/
+/web/uploads/
+
+# PHPUnit
+/app/phpunit.xml
+/phpunit.xml
+
+# Build data
+/build/
+
+# Composer PHAR
+/composer.phar
+/nbproject/private/
