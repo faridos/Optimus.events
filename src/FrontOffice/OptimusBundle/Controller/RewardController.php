@@ -70,7 +70,7 @@ $request->getSession()->getFlashBag()->add('AjouterPalmarés', "Palmarés  a ét
             throw $this->createNotFoundException('Unable to find Reward entity.');
         }
        
-        $editForm = $this->createForm(new RewardType(), $reward);
+        $editForm = $this->createForm(new RewardUserType(), $reward);
         
         $editForm->handleRequest($request);
 
