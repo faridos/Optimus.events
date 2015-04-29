@@ -103,23 +103,6 @@ Nombre des members : <span  id="nbparticip">{{ club.adherents | length}}</span>
 <div class="row">
 <div class="col-md-5 pb20">
 <div class="pc-about osLight" style="margin-left: -37%;">
-<div class="title nombrus showoptimus">
-<div class="userWidget-2 shownamus">
-<a href="{{ path('show_profil',{'id' :club.createur.id})}}" target="_blank">
-<div class="avatar" style="background-color:#fff !important">
-<img src="{{ asset('women.png') }}" alt="avatar" class="tooltipus2-image">
-</div>
-</a>
-<div class="info" style="margin-left: 1%;  margin-top: 3%;">
-<a href="{{ path('show_profil',{'id' :club.createur.id})}}" target="_blank"><div class="name">{{ club.createur.nom ~' '~club.createur.prenom }}</div></a>
-<div class="title" style="margin-left:0">{{club.createur.profil}}</div>
-<div class="address" style="margin-left:0">{{club.createur.adresse}}</div>
-</div>
-
-<div class="commentArrow-show"><span class="fa fa-caret-down"></span></div> <div class="clearfix"></div>
-</div>
-Créateur :<a href="{{ path('show_profil',{'id' :club.createur.id})}}" target="_blank"><span class="address detaillus">{{ club.createur.nom ~' '~club.createur.prenom }}</span></a>
-</div>
 <div class="title eventus">Propriétaire :<a  href="{{path('show_profil',{'id' : club.createur.id}) }}"><span class="address detaillus" style="font-size: 13px !important;font-weight: bold !important; color: #c02100 !important;">{{club.createur}}</span></a></div>
 <div class="title eventus">Date Creation :<span class="address detaillus" style="font-size: 13px !important;font-weight: bold !important; color: #000 !important;">{{club.dateCreation|date("d/m/Y ")}}</span></div>
 <div class="title eventus">Adresse :<span class="address detaillus" style="font-size: 13px !important;font-weight: bold !important; color: #000 !important;">{{club.adresse}}</span></div><br>
