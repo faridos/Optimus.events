@@ -59,10 +59,6 @@
                 <div class="clearfix"></div>
             </a>
             <div class="dropdown-menu pull-right userMenu" role="menu">
-                <div class="mobAvatar">
-                    <img class="avatar mobAvatarImg" src="{{ asset( app.user.getWebPath ) }}">
-                    <div class="mobAvatarName">{{ app.user.nom }} {{ app.user.prenom }}</div>
-                </div>
                 <ul>
                     <li><a href="{{ path('show_profil',{'id': app.user.id}) }}"><span class="glyphicon glyphicon-user"></span>Profile</a></li>
                 <!--    <li><a href="{{ path('show_profil',{'id': app.user.id}) }}"><span class="fa fa-users"></span>Mes clubs</a></li>
