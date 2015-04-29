@@ -101,16 +101,16 @@ class ClubController extends Controller {
         if (!$club || $club->getActive() == 0 || ($club->getIsPayant()== 0 && $club->getCreateur() != $user)) {
             return $this->render('FrontOfficeOptimusBundle::404.html.twig');
         }
-        $notification = $em->getRepository('FrontOfficeOptimusBundle:Notification')->findOneBy(array('club' => $club));
-        if ($notification) {
-            $notificationSeen = $em->getRepository('FrontOfficeOptimusBundle:NotificationSeen')->findOneBy(array('users' => $user, 'notifications' => $notification));
-            if (empty($notificationSeen)) {
-
-                $notifevent = new NotificationSeenEvent($user, $notification);
-                $dispatcher = $this->get('event_dispatcher');
-                $dispatcher->dispatch(FrontOfficeOptimusEvent::NOTIFICATION_SEEN_USER, $notifevent);
-            }
-        }
+//        $notification = $em->getRepository('FrontOfficeOptimusBundle:Notification')->findOneBy(array('club' => $club));
+//        if ($notification) {
+//            $notificationSeen = $em->getRepository('FrontOfficeOptimusBundle:NotificationSeen')->findOneBy(array('users' => $user, 'notifications' => $notification));
+//            if (empty($notificationSeen)) {
+//
+//                $notifevent = new NotificationSeenEvent($user, $notification);
+//                $dispatcher = $this->get('event_dispatcher');
+//                $dispatcher->dispatch(FrontOfficeOptimusEvent::NOTIFICATION_SEEN_USER, $notifevent);
+//            }
+//        }
        $progarammes = $em->getRepository('FrontOfficeOptimusBundle:Program')->findBy(array('clubp' => $club), array('datedebut' => 'desc'));
       $nbv1 = $club->getNbrvu();
         $nb = $nbv1 + 1 ;
