@@ -95,7 +95,15 @@ Evenement Supprimer
 <div class="userWidget-2 shownamus">
 <a href="{{ path('show_profil',{'id' :env.createur.id})}}" target="_blank">
 <div class="avatar" style="background-color:#fff !important">
+{% if env.createur.path == null %}
+{% if env.createur.sexe == 'H' %}
+<img src="{{ asset('men.png') }}" alt="avatar" class="tooltipus2-image">
+{% else %}
 <img src="{{ asset('women.png') }}" alt="avatar" class="tooltipus2-image">
+{% endif %}
+{% else %}
+<img src="{{ asset(env.createur.WebPath) }}" alt="avatar" class="tooltipus2-image">
+{% endif %}
 </div>
 </a>
 <div class="info" style="margin-left: 1%;  margin-top: 3%;">
@@ -173,7 +181,15 @@ Cette évènement est depassé
 <div class="userWidget-2 shownamus">
 <a href="{{ path('show_profil',{'id' :part.event.createur.id})}}" target="_blank">
 <div class="avatar" style="background-color:#fff !important">
+{% if part.event.createur.path == null %}
+{% if part.event.createur.sexe == 'H' %}
+<img src="{{ asset('men.png') }}" alt="avatar" class="tooltipus2-image">
+{% else %}
 <img src="{{ asset('women.png') }}" alt="avatar" class="tooltipus2-image">
+{% endif %}
+{% else %}
+<img src="{{ asset(part.event.createur.WebPath) }}" alt="avatar" class="tooltipus2-image">
+{% endif %}
 </div>
 </a>
 <div class="info" style="margin-left: 1%;  margin-top: 3%;">
@@ -277,7 +293,15 @@ Club Supprimer
 <div class="userWidget-2 shownamus">
 <a href="{{ path('show_profil',{'id' :club.createur.id})}}" target="_blank">
 <div class="avatar" style="background-color:#fff !important">
+{% if club.createur.path == null %}
+{% if club.createur.sexe == 'H' %}
+<img src="{{ asset('men.png') }}" alt="avatar" class="tooltipus2-image">
+{% else %}
 <img src="{{ asset('women.png') }}" alt="avatar" class="tooltipus2-image">
+{% endif %}
+{% else %}
+<img src="{{ asset(club.createur.WebPath) }}" alt="avatar" class="tooltipus2-image">
+{% endif %}
 </div>
 </a>
 <div class="info" style="margin-left: 1%;  margin-top: 3%;">
