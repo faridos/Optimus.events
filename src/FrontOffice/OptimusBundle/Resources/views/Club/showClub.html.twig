@@ -27,6 +27,13 @@
 {{ flashMessage }}
 </div>
 {% endfor %}
+{% for flashMessage in app.session.flashbag.get('EchecActivationClub') %}
+<br/>
+<div class="alert alert-success">
+<a class="close" data-dismiss="alert">×</a>
+{{ flashMessage }}
+</div>
+{% endfor %}
 {% for flashMessage in app.session.flashbag.get('AjouterAlbumClub') %}
 <br/>
 <div class="alert alert-success">
@@ -102,8 +109,34 @@ Nombre des members : <span  id="nbparticip">{{ club.adherents | length}}</span>
 <div class="buttonsWrapper"> 
 <div class="row">
 <div class="col-md-5 pb20">
+    
 <div class="pc-about osLight" style="margin-left: -37%;">
-<div class="title eventus">Propriétaire :<a  href="{{path('show_profil',{'id' : club.createur.id}) }}"><span class="address detaillus" style="font-size: 13px !important;font-weight: bold !important; color: #c02100 !important;">{{club.createur}}</span></a></div>
+    <div class="title eventus showoptimus">
+<div class="userWidget-2 shownamus" style="width:140% !important;">
+<a href="{{ path('show_profil',{'id' :club.createur.id})}}" target="_blank">
+<div class="avatar" style="background-color:#fff !important">
+{% if club.createur.path == null %}
+{% if club.createur.sexe == 'H' %}
+<img src="{{ asset('men.png') }}" alt="avatar" class="tooltipus2-image" style="top:30% !important;">
+{% else %}
+<img src="{{ asset('women.png') }}" alt="avatar" class="tooltipus2-image">
+{% endif %}
+{% else %}
+<img src="{{ asset(club.createur.WebPath) }}" alt="avatar" class="tooltipus2-image">
+{% endif %}
+</div>
+</a>
+<div class="info" style="margin-left: 30%;  margin-top: 3%;">
+<a  href="{{ path('show_profil',{'id' :club.createur.id})}}" target="_blank"><div class="name">{{ club.createur.nom ~' '~club.createur.prenom }}</div></a>
+<div class="title" style="margin-left:0">{{club.createur.profil}}</div>
+<div class="address" style="margin-left:0">{{club.createur.adresse}}</div>
+</div>
+
+<div class="commentArrow-show"><span class="fa fa-caret-down"></span></div> <div class="clearfix"></div>
+</div>
+Créateur :<a href="{{ path('show_profil',{'id' :club.createur.id})}}" target="_blank"><span class="address detaillus" style="font-size: 13px !important;font-weight: bold !important; color: #c02100 !important;">{{ club.createur.nom ~' '~club.createur.prenom }}</span></a>
+</div>
+
 <div class="title eventus">Date Creation :<span class="address detaillus" style="font-size: 13px !important;font-weight: bold !important; color: #000 !important;">{{club.dateCreation|date("d/m/Y ")}}</span></div>
 <div class="title eventus">Adresse :<span class="address detaillus" style="font-size: 13px !important;font-weight: bold !important; color: #000 !important;">{{club.adresse}}</span></div><br>
 </div>
@@ -1327,7 +1360,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 $('.showoptimus').hover(function() {
 $(this).find('.shownamus').stop(true, true).delay(1).fadeIn(1);
 }, function() {
-$(this).find('.shownamus').stop(true, true).delay(1).fadeOut(1);
+$(this).find('.shownamus').stop(true, true).delay(200).fadeOut(500);
 });
 </script>
 {% endblock %}
