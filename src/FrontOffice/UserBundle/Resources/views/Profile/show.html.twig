@@ -714,7 +714,11 @@ Palmarés Supprimer
 <div class="modal-body">
 <input id="inviterevent{{env.id}}" type="hidden" name="event" value="{{env.id}}"/>
 <ul id='blockInvit' class="notifyList scrollbar" style=" overflow-x: hidden; overflow-y: auto; overflow-wrap: break-word; max-height: 200px;background-color:#fff;">
-<div  class="col-md-12"  id="listfriend{{env.id}}"> 
+<div id="listvid{{env.id}}" style="display: none;" class="alert alert-danger">
+                        {#<a class="close" data-dismiss="alert">×</a>#}
+                       Il Faut Slectionéé des Amis
+                    </div>
+    <div  class="col-md-12"  id="listfriend{{env.id}}"> 
 
 {% set i = 0 %}
 {% set friends = getFriends(env.createur.id) %}
@@ -908,7 +912,10 @@ tous vos  amis sont particip
 
 
 <div  class="col-md-12" id="listfriendclublist{{club.id}}"> 
-
+<div id="listvid{{club.id}}" style="display: none;" class="alert alert-danger">
+                        {#<a class="close" data-dismiss="alert">×</a>#}
+                       Il Faut Slectionéé des Amis
+                    </div>
 {% set i = 0 %}
 {% set friends = getFriends(club.createur.id) %}
 {%for friend in friends %}
@@ -1385,8 +1392,25 @@ Amis
 $('#frontoffice_optimusbundle_reward_date').datepicker()
 </script>
 <script>
+    var j =0;
 {% for club in user.clubs %}
 $("#envoyerinvitfriendClub{{club.id}}").click(function(){
+    {% set friends = getFriends(club.createur.id) %}
+{%for friend in friends %}
+{% if friend.profil == 'Sportif' %}
+{% set memberOuNon = MemberOuNon(club.id,friend) %}
+{% if memberOuNon == 0 %}
+if (document.getElementById('listefrirndClub{{club.id}}{{friend.id}}').checked){
+j = 1;
+}{% endif %}
+{% endif %}
+{% endfor %}
+     if(j == 0)
+    {
+        $("#listvid{{club.id}}").show();
+        }
+        else
+{
 $("#envoyerinvitfriendClub{{club.id}}").hide();
 $("#loaderInvit{{club.id}}").show();
 var club = {{club.id}};
@@ -1427,6 +1451,7 @@ document.getElementById('listefrirndClub{{club.id}}{{friend.id}}').checked = fal
 
 }
 });
+}
 });                        {% endfor %}
 </script>
 <script>
@@ -1494,6 +1519,23 @@ $('.modal-backdrop').hide();
 });                                {% endfor %}
 
 $("#envoyerinvitfriendsubmit{{env.id}}").click(function(){
+    var j = 0;
+    {% set friends = getFriends(env.createur.id) %}
+    {%for friend in friends %}
+{% set participantOuNon=ParticipantOuNon(env,friend) %}
+{% if participantOuNon == 0 %}
+if (document.getElementById('listefrirnd{{env.id}}{{friend.id}}').checked){
+j = 1;
+}
+//alert(test);
+{% endif %}
+{% endfor %}
+    if(j == 0)
+    {
+        $("#listvid{{env.id}}").show();
+        }
+        else
+{
 $("#envoyerinvitfriendsubmit{{env.id}}").hide();
 $('#loader{{env.id}}').show();
 var event = $("#inviterevent{{env.id}}").val();
@@ -1530,6 +1572,7 @@ document.getElementById('listefrirnd{{env.id}}{{friend.id}}').checked = false;  
 
 }
 });
+}
 });                            {% endfor %}
 </script>
 <script>

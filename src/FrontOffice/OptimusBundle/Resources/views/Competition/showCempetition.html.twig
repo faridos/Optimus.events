@@ -640,6 +640,10 @@ Photo Supprimer
 
 <ul id='blockInvit' class="notifyList scrollbar" style=" overflow-x: hidden; overflow-y: auto; overflow-wrap: break-word; max-height: 200px;background-color:#fff;">
 <div  class="col-md-12" id="listentaineur" > 
+    <div id="listvid" style="display: none;" class="alert alert-danger">
+                        {#<a class="close" data-dismiss="alert">×</a>#}
+                       Il Faut Slectionéé des Entraineurs
+                    </div>
 {% for entraineur in entraineurs %}
 {% if app.user != entraineur %}
     {%set i = 0 %}
@@ -776,6 +780,7 @@ $(selector).chosen(config[selector]);
 }
 </script>
 <script>
+    var j = 0;
 {% for entraineur in entraineurs %}
 {% if app.user != entraineur %}
  {%set i = 0 %}
@@ -789,7 +794,15 @@ $(selector).chosen(config[selector]);
      $('body').on('click', '#envoyerinvitEntraineur', function () {
 var comp = {{competition.id}};
 var name = new Array;
-
+if (document.getElementById('listentraineur{{entraineur.id}}').checked){
+j = 1;
+}
+ if(j == 0)
+    {
+        $("#listvid").show();
+        }
+        else
+{
 $("#envoyerinvitEntraineur").hide();
 $("#loaderInvit").show();
 var i = 0;
@@ -814,6 +827,7 @@ document.getElementById('listentraineur{{entraineur.id}}').checked = false;
 document.getElementById('listentraineurappend{{entraineur.id}}').checked = false; 
  }
 });
+}
 });  
 {% endif %}
 {% endif %}

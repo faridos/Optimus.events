@@ -756,7 +756,10 @@ Cette compétition est depassé
 <input id="inviterclub" type="hidden" name="event" value="{{club.id}}"/>
 <ul id='blockInvit' class="notifyList scrollbar" style=" overflow-x: hidden; overflow-y: auto; overflow-wrap: break-word; max-height: 200px;background-color:#fff;">
 <div id="listfriend" class="col-md-12">
-
+ <div id="listvid" style="display: none;" class="alert alert-danger">
+                        {#<a class="close" data-dismiss="alert">×</a>#}
+                       Il Faut Slectionéé des Amis
+                    </div>
 
 {% set i = 0 %}
 {% set friends = getFriends(club.createur.id) %}
@@ -1074,6 +1077,25 @@ $("#invitation-envoyées").hide();
 <script>
 
 $("#envoyerinvitfriendsubmit").click(function(){
+    var j = 0;   
+    {% set friends = getFriends(club.createur.id) %}
+ {%for friend in friends %}
+    {% if friend.profil == 'Sportif' %}
+{% set memberOuNon = MemberOuNon(club.id,friend) %}
+{% if memberOuNon == 0 %}
+if (document.getElementById('listefrirnd{{friend.id}}').checked){
+j = 1;
+
+}{% endif %}
+{% endif %}
+{% endfor %}
+    if(j == 0)
+    {
+        $("#listvid").show();
+        }
+        else
+{
+$("#listvid").hide();
 $("#envoyerinvitfriendsubmit").hide();
 $("#loader").show();
 var club = {{club.id}}
@@ -1115,6 +1137,8 @@ document.getElementById('listefrirnd{{friend.id}}').checked = false;
 
 }
 });
+}
+
 });
 </script>
 

@@ -559,7 +559,10 @@ Pour lire la description  <a href="#clikus" data-toggle="modal" style="color:#C0
 <div class="modal-body" >
 <ul id='blockInvit' class="notifyList scrollbar" style=" overflow-x: hidden; overflow-y: auto; overflow-wrap: break-word; max-height: 200px;background-color:#fff;">
 <div id="listami" class="col-md-12">
-
+<div id="listvid" style="display: none;" class="alert alert-danger">
+                        {#<a class="close" data-dismiss="alert">×</a>#}
+                       Il Faut Slectionéé des Amis
+                    </div>
 {% set i = 0 %}
 {% set friends = getFriends(event.createur.id) %}
 
@@ -676,13 +679,32 @@ $('#invitation-envoyées').hide();
 });    </script>
 <script>
 $("#submitInvit").click(function(){
-{% set friends = getFriends(event.createur.id) %}
+ var j = 0;   
+ {% set friends = getFriends(event.createur.id) %}
+{%for friend in friends %}
+ {% set participantOuNon=ParticipantOuNon(event,friend) %}
+{% if participantOuNon == 0 %}
+if (document.getElementById('listefrirnd{{friend.id}}').checked){
+j=1;
+}
+{% endif %}
+
+{% endfor %}
+    if(j == 0)
+    {
+        $("#listvid").show();
+        }
+        else
+{
 $("#submitInvit").hide();
 $('#loader_inviter_event').show();
 var event = $("#inviterevent").val();
 var name = new Array;
 test = 'false';
-var i = 0;{%for friend in friends %}{% set participantOuNon=ParticipantOuNon(event,friend) %}
+var i = 0;
+{% set friends = getFriends(event.createur.id) %}
+{%for friend in friends %}
+ {% set participantOuNon=ParticipantOuNon(event,friend) %}
 {% if participantOuNon == 0 %}
 if (document.getElementById('listefrirnd{{friend.id}}').checked){
 name[i] = $("#listefrirnd{{friend.id}}").val();
@@ -700,19 +722,24 @@ url: Routing.generate('inviter_ami_event'),
 data: {name:name, event:event},
 dataType: 'json',
 success: function(data) {
-
-
 $('#loader_inviter_event').hide();
 $('#inviteramievent').toggle();
 $('.modal-backdrop').hide();
 $("#submitInvit").show();
-$('#invitation-envoyées').show();{%for friend in friends %}{% set participantOuNon=ParticipantOuNon(event,friend) %}
+$('#invitation-envoyées').show();
+ {%for friend in friends %}
+ {% set participantOuNon=ParticipantOuNon(event,friend) %}
 {% if participantOuNon == 0 %}
-document.getElementById('listefrirnd{{friend.id}}').checked = false;{% endif %}{% endfor %}
+document.getElementById('listefrirnd{{friend.id}}').checked = false;
+ {% endif %}
+ {% endfor %}
 
 }
+
 });
-});</script>
+}
+});
+</script>
 
 <script>
 "use strict";
