@@ -106,7 +106,21 @@ les invitations ont été envoyées
 
 <div class="row">
 <div class="cardRating col-md-5" style="margin-left: -40px;"> 
-
+    {% set i =0%}
+{% for particip in competition.particips %}
+    {% for member in particip.club.adherents %}
+    {% for partc in particip.partclubcomp %}
+        {% if partc.participant.member == app.user %}
+            {% set i = 1 %}
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+    {% endfor %}
+    {% if i == 0 %}
+<div>{% include 'FrontOfficeRatingBundle:Rating:rating.html.twig' with { 'id' : 'P'~competition.id } %}</div>
+{% else %}
+<div>{% include 'FrontOfficeRatingBundle:Rating:control.html.twig' with { 'id' : 'P'~competition.id } %}</div>
+{% endif %}
 </div>
 <div class="cardRating col-md-6" style="margin-left:-20px;">
 <div class="label labelus label-yellow " >
