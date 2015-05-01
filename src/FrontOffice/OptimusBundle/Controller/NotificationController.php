@@ -191,6 +191,32 @@ class NotificationController extends Controller {
                 }
             }
       
+            foreach ($user->getAdherent() as $membre) {
+                if($membre->getConfirmed()== 1 ){
+                       foreach ($membre->getParticips() as $participe) {
+                           if($participe->getParticips()->getCompetition()->getActive()== 1){
+                            $notifstarsCompets = $em->getRepository('FrontOfficeOptimusBundle:Notification')->findBy(array("idVote" => "P".$participe->getParticips()->getCompetition()->getId()));
+                            foreach ($notifstarsCompets as $notifcompet) {
+                       
+                    if ($user->getId() != $notifcompet->getNotificateur()->getId() && $notifcompet->getDatenotification() > $membre->getDateconfirm()) {
+                        $i = 0;
+                        foreach ($user->getNotificationseen() as $notifSeen) {
+                            if ($notifSeen->getNotifications()->getId() == $notifcompet->getId()) {
+                                $i = 1;
+                            }
+                        }
+                        if ($i == 0) {
+                            $tt[]=$notifcompet;
+                            $res[$c] = $notifcompet;
+                            $c++;
+                        }
+                    }
+                }
+                       }        
+                }
+                } 
+            }
+            
         $notifAcceptRefuse = $em->getRepository('FrontOfficeOptimusBundle:Notification')->findBy(array("entraineur" => $user), array("datenotification" => 'DESC'));
         foreach ($notifAcceptRefuse as $notifAR) {
             
@@ -237,8 +263,7 @@ class NotificationController extends Controller {
                             $i = 1;
                         }
                     }
-                    if ($i == 0) {
-                   $tt[]=$notifclub;
+                    if ($i == 0) {                   
                         $res[$c] = $notifAddClub;
                         $c++;
                     }

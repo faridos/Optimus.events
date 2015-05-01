@@ -136,6 +136,16 @@ class RatingController extends BaseController
         $notif->setClub($club);
         $em->persist($notif);
         $em->flush();
+        }elseif($id[0]=="P"){
+        $em = $this->getDoctrine()->getManager();
+        $notif = new Notification();
+        $notif->setNotificateur($user);
+        $notif->setType('voteP');
+        $notif->setIdVote($id);
+        $competition = $em->getRepository("FrontOfficeOptimusBundle:Competition")->find(intval(substr($id , 1)));
+        $notif->setCompetition($competition);
+        $em->persist($notif);
+        $em->flush();
         }
         return $this->redirect($redirectUri);
     }
