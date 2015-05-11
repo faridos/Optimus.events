@@ -3925,7 +3925,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>55425999bf3c8</argument>
+            <argument>555056e364ff5</argument>
           </service>
         </argument>
       </argument>
@@ -4192,7 +4192,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>55425999bf3c8</argument>
+            <argument>555056e364ff5</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
@@ -5318,9 +5318,9 @@
     <service id="payum.paypal_express_checkout_nvp.paypal_express_checkout_nvp.payment" class="Payum\Core\Payment" factory-method="create" factory-service="payum.paypal_express_checkout_nvp.factory">
       <tag name="payum.payment" factory="paypal_express_checkout_nvp" payment="paypal_express_checkout_nvp"/>
       <argument type="collection">
-        <argument key="username">optomiseventstest-facilitator-1_api1.gmail.com</argument>
-        <argument key="password">NCNDDR238FXFARQ2</argument>
-        <argument key="signature">AFcWxV21C7fd0v3bYYYRCpSSRl31AlrcKpw8nVOoElh4Ekzk9d1Q-SUv</argument>
+        <argument key="username">stoica_api1.yahoo.com</argument>
+        <argument key="password">UGQ55XKWCNMFVQUS</argument>
+        <argument key="signature">AFcWxV21C7fd0v3bYYYRCpSSRl31Au51-nraWfZp9a1iZn-Tp6CjKsPR</argument>
         <argument key="sandbox">true</argument>
         <argument key="actions" type="collection"/>
         <argument key="apis" type="collection"/>

@@ -81,6 +81,10 @@
                                                                 {% set vote = getVote(notification.notifications.idVote, notification.notifications.notificateur.id) %}
                                                                 <div class="message">a ajouté un vote de {{vote.value}} etoile sur le club {{ notification.notifications.club.nom }}</div>
                                                             {% endif %}
+                                                            {% if notification.notifications.type == 'voteP' %}
+                                                                {% set vote = getVote(notification.notifications.idVote, notification.notifications.notificateur.id) %}
+                                                                <div class="message">a ajouté un vote de {{vote.value}} etoile sur la competition {{ notification.notifications.competition.titre }}</div>
+                                                            {% endif %}
                                                             {% if notification.notifications.type == 'accepte' %}
                                                                 <div class="message">a accepté votre demande</div>
                                                             {% endif %}

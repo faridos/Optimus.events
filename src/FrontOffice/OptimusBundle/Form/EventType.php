@@ -14,8 +14,7 @@ class EventType extends AbstractType{
 		$builder  
 		->add('titre','text',array('attr'=>array('class'=>'search-optimus','placeholder'=>'Entrer le titre (Obligatoire)')))     
 		->add('lieu','text',array('attr'=>array('class'=>'search-optimus','placeholder'=>'Entrer le lieu' , 'readonly'=>'readonly'),'required'=>True))   
-		->add('dateDebut','datetime', array('attr'=>array('class'=>'some_class search-optimus','placeholder'=>'Entrer la date de début (Obligatoire)'),'widget' => 'single_text','required' => true))
-                ->add('dateFin','datetime', array('attr'=>array('class'=>'some_class search-optimus','placeholder'=>'Entrer la date de fin (Obligatoire)'),'widget' => 'single_text','required' => true))  
+		->add('dateDebut','datetime', array('attr'=>array('class'=>'some_class search-optimus','placeholder'=>'Entrer la date de début (Obligatoire)'),'widget' => 'single_text','required' => true))            ->add('dateFin','datetime', array('attr'=>array('class'=>'some_class search-optimus','placeholder'=>'Entrer la date de fin (Obligatoire)'),'widget' => 'single_text','required' => true))  
 		->add('nbrPlaces','integer',array('attr'=>array('min'=>0,'class'=>'search-optimus','placeholder'=>'Entrer le nombre de places'),'required'=>False))  
 		->add('frais','integer',array('attr'=>array('min'=>0,'class'=>'form-control round sansBorder','placeholder'=>'Entrer les frais d\'inscription'),'required'=>False))    
 		->add('description','textarea',array('attr'=>array('class'=>'jqte-test','name'=> 'textarea','placeholder'=>'Entrer la description du votre évenement...'),'required' => False)) 

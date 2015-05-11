@@ -5,6 +5,14 @@
 
 <div class="col-lg-12"><div class="row mb20">
 </div>
+    {% for flashMessage in app.session.flashbag.get('ModificationClub') %}
+<br/>
+<div class="alert alert-success">
+<a class="close" data-dismiss="alert">×</a>
+{{ flashMessage }}
+</div>
+{% endfor %}
+    
 {% for flashMessage in app.session.flashbag.get('AjouterPalmarésClub') %}
 <br/>
 <div class="alert alert-success">
@@ -424,7 +432,7 @@ Palmarés Supprimer
         {% endif %}
     {% endfor %}
 {% set memberOuNon = MemberOuNon(club.id,app.user) %}
-{% if memberOuNon == 1 and i == 1%}
+{% if memberOuNon == 1 and i == 1 and palmares.member != null %}
 <div class="col-md-3 col-sm-2">
 <div class="pc-avatar">
 <a href="#" class="btn btn-icon btn-round btn-o  palmaruss" title="{{ palmares.member.member }}" data-toggle="tooltip" data-tooltip-class="red" data-placement="top">
@@ -1327,7 +1335,7 @@ var newMarker = new google.maps.Marker({
 
 position: posevent,
 map: mapclub,
-icon: new google.maps.MarkerImage('http://www.optimus-beta.com/template/images/marker-position.png'),
+icon: new google.maps.MarkerImage('http://optimus.events/template/images/marker-position.png'),
 draggable: false,
 animation: google.maps.Animation.DROP
 
@@ -1336,7 +1344,7 @@ var myLatLng = new google.maps.LatLng({{club.lat}}, {{club.lng}});
 var markerclub = new google.maps.Marker({
 position: myLatLng,
 map: mapclub,
-icon: new google.maps.MarkerImage('http://www.optimus-beta.com/template/images/marker-green.png'),
+icon: new google.maps.MarkerImage('http://optimus.events/template/images/marker-green.png'),
 draggable: false,
 animation: google.maps.Animation.DROP
 });

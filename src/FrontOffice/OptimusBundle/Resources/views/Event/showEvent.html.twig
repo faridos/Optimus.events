@@ -685,7 +685,7 @@ $("#submitInvit").click(function(){
  {% set participantOuNon=ParticipantOuNon(event,friend) %}
 {% if participantOuNon == 0 %}
 if (document.getElementById('listefrirnd{{friend.id}}').checked){
-j=1;
+j=1
 }
 {% endif %}
 
@@ -759,7 +759,7 @@ var newMarker = new google.maps.Marker({
 
 position: posevent,
 map: mapevent,
-icon: new google.maps.MarkerImage('http://www.optimus-beta.com/template/images/marker-position.png'),
+icon: new google.maps.MarkerImage('http://optimus.events/template/images/marker-position.png'),
 draggable: false,
 animation: google.maps.Animation.DROP
 
@@ -768,7 +768,7 @@ var myLatLng = new google.maps.LatLng({{event.lat}}, {{event.lng}});
 var markerevent = new google.maps.Marker({
 position: myLatLng,
 map: mapevent,
-icon: new google.maps.MarkerImage('http://www.optimus-beta.com/template/images/marker-green.png'),
+icon: new google.maps.MarkerImage('http://optimus.events/template/images/marker-green.png'),
 draggable: false,
 animation: google.maps.Animation.DROP
 });

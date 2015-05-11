@@ -21,7 +21,7 @@
     <div class="search-panel">
         <form class="form-inline" role="form">
             <div class="form-group">
-                <img src="{{ asset('http://www.optimus-beta.com/template/images/marker-green.png') }}">
+                <img src="{{ asset('http://optimus.events/template/images/marker-green.png') }}">
             </div>
             <div class="form-group">
                 <input style="border-radius:25px" type="text" class="form-control" id="pac-input2" placeholder="Entrer ici votre région" autocomplete="on" size="60">
@@ -39,7 +39,7 @@
 {% endblock %}
 {% block javascripts %}
     <script>
-        var url = 'http://www.optimus-beta.com';
+        var url = 'http://optimus.events';
         var pos;
                 (function($) {
                 "use strict";
@@ -71,7 +71,7 @@ var markers = [];
             pixelOffset: new google.maps.Size( - 101, - 285),
             zIndex: null,
             boxStyle: {
-            background: "url('http://www.optimus-beta.com/template/images/infobox-bg.png') no-repeat",
+            background: "url('http://optimus.events/template/images/infobox-bg.png') no-repeat",
                     opacity: 1,
                     width: "202px",
                     height: "245px"
@@ -91,7 +91,7 @@ var markers = [];
                             var marker_{{ event.id}} = new google.maps.Marker({
                             position: myLatLng,
                             map: map,
-                            icon: new google.maps.MarkerImage('http://www.optimus-beta.com/template/images/marker-green.png'),
+                            icon: new google.maps.MarkerImage('http://optimus.events/template/images/marker-green.png'),
                             draggable: false,
                             animation: google.maps.Animation.DROP,
                             title: "Cliquez pour voir aperçu"
@@ -152,7 +152,7 @@ var markers = [];
                                                         var newMarker = new google.maps.Marker({
                                                         position: pos,
                                                                 map: map,
-                                                                icon: new google.maps.MarkerImage('http://www.optimus-beta.com/template/images/marker-position.png'),
+                                                                icon: new google.maps.MarkerImage('http://optimus.events/template/images/marker-position.png'),
                                                                 draggable: true,
                                                                 animation: google.maps.Animation.DROP,
                                                         });

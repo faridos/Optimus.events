@@ -37,6 +37,7 @@
                 $.ajax({
                 url: Routing.generate('accept_relation', {'id':{{invitation.id}}}),
                         success: function(data) {
+                             $('#{{ invitation.id }}').hide();
                         var nb = parseInt($('#nbInvitation').text());
                                 var nouveauNb = nb - 1;
                                 if (nouveauNb > 0)
@@ -55,13 +56,7 @@
                                 ' </button>'
 
                                 );
-                                $('#replace-accepte-profil').empty().append(
-                                '<button type="button" class="btn btn-green btn-round dropdown-toggle" data-toggle="dropdown">' +
-                                'Amis' +
-                                '<span class="caret"></span>' +
-                                ' </button>'
-
-                                );
+                               
                                 // .append("<li class=\"invitation\"> <div class=\"userWidget-2\" style=\"margin-bottom:1px\"> <div class=\"avatar\"></div> <div class=\"info\"><div class=\"notifyName\">" + invitation.username + "</div></div>");
                         }
                 });

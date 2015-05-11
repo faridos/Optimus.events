@@ -1,11 +1,6 @@
  var pos;
-
 (function($) {
-
     "use strict";
-
-
-
     var options = {
                         zoom : 15,
                         zoomControl: true,
@@ -24,23 +19,11 @@
     }
                         };
 
-    
-
-
-
-    var markers = [];
-
-
-
- var map;
-
-    setTimeout(function() {
-
-        $('body').removeClass('notransition');
-
-
-
-        if ($('#home-map').length > 0) {
+var markers = [];
+var map;
+setTimeout(function() {
+$('body').removeClass('notransition');
+ if ($('#home-map').length > 0) {
 
             map = new google.maps.Map(document.getElementById('home-map'), options);
 
@@ -63,6 +46,7 @@
                          pos = new google.maps.LatLng(position.coords.latitude,
 
                                 position.coords.longitude);
+                              
 
 
 

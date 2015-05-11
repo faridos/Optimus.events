@@ -163,9 +163,9 @@ payum:
     payments:
         paypal_express_checkout_nvp:
             paypal_express_checkout_nvp:
-                username:  optomiseventstest-facilitator-1_api1.gmail.com
-                password: NCNDDR238FXFARQ2
-                signature: AFcWxV21C7fd0v3bYYYRCpSSRl31AlrcKpw8nVOoElh4Ekzk9d1Q-SUv
+                username:  stoica_api1.yahoo.com
+                password:  UGQ55XKWCNMFVQUS
+                signature: AFcWxV21C7fd0v3bYYYRCpSSRl31Au51-nraWfZp9a1iZn-Tp6CjKsPR
                 sandbox: true
 liip_imagine:
     resolvers:
